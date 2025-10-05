@@ -1,7 +1,7 @@
 # BD1B_2S2025_202302220
 
 ## Tabla de Contenidos
-- [Manual Técnico - Proyecto 2](#manual-técnico---proyecto-2)
+- [BD1B\_2S2025\_202302220](#bd1b_2s2025_202302220)
   - [Tabla de Contenidos](#tabla-de-contenidos)
   - [1. Objetivos](#1-objetivos)
     - [1.1 Objetivo General](#11-objetivo-general)
@@ -9,105 +9,16 @@
   - [2. Alcance del Proyecto](#2-alcance-del-proyecto)
     - [2.1 Inclusiones](#21-inclusiones)
     - [2.2 Exclusiones](#22-exclusiones)
-  - [3. Topología de Red](#3-topología-de-red)
-    - [3.1 DIGA](#31-diga)
-    - [3.2 Biblioteca](#32-biblioteca)
-    - [3.3 Edificio T4](#33-edificio-t4)
-    - [3.4 Edificio S11](#34-edificio-s11)
-    - [3.5 Edificio S12](#35-edificio-s12)
-    - [3.6 BACKBONE](#36-backbone)
-  - [4. Tabla de Direccionamiento IP](#4-tabla-de-direccionamiento-ip)
-    - [4.1 Direcciones de dispositivos](#41-direcciones-de-dispositivos)
-      - [4.1.1 DIGA](#411-diga)
-      - [4.1.2 Biblioteca](#412-biblioteca)
-      - [4.1.3. Edificio T4](#413-edificio-t4)
-      - [4.1.4 Edificio S11](#414-edificio-s11)
-      - [4.1.5 Edificio S12](#415-edificio-s12)
-    - [4.2 Direcciones de Puertas de enlace](#42-direcciones-de-puertas-de-enlace)
-      - [4.2.1 DIGA](#421-diga)
-      - [4.2.2 Biblioteca](#422-biblioteca)
-      - [4.2.3. Edificio T4](#423-edificio-t4)
-      - [4.2.4 Edificio S11](#424-edificio-s11)
-      - [4.2.5 Edificio S12](#425-edificio-s12)
-  - [5. Subnetting](#5-subnetting)
-    - [5.1 DIGA](#51-diga)
-    - [5.2 Biblioteca](#52-biblioteca)
-    - [5.3 Edificio T4](#53-edificio-t4)
-    - [5.4 Edificio S11](#54-edificio-s11)
-    - [5.5 Edificio S12](#55-edificio-s12)
-    - [5.6 BACKBONE](#56-backbone)
-  - [6. Configuraciones de Dispositivos](#6-configuraciones-de-dispositivos)
-    - [6.1 DIGA](#61-diga)
-      - [6.1.1 Configuración Switches](#611-configuración-switches)
-        - [6.1.1.1 SW3](#6111-sw3)
-        - [6.1.1.2 SW4](#6112-sw4)
-        - [6.1.1.2 SW5 (Servidor VTP)](#6112-sw5-servidor-vtp)
-        - [6.1.1.2 SW6](#6112-sw6)
-      - [6.1.2 Configuración Multiswitches](#612-configuración-multiswitches)
-        - [6.1.2.1 MS1](#6121-ms1)
-        - [6.1.2.2 MS2](#6122-ms2)
-      - [6.1.3 Conexiones entre los switches](#613-conexiones-entre-los-switches)
-      - [6.1.4 Conexiones a dispositivos finales](#614-conexiones-a-dispositivos-finales)
-    - [6.2 Biblioteca](#62-biblioteca)
-      - [6.2.1 Configuraciones Switches](#621-configuraciones-switches)
-        - [6.2.1.1 SW0](#6211-sw0)
-        - [6.2.1.2 SW1](#6212-sw1)
-        - [6.2.1.3 Switch6](#6213-switch6)
-      - [6.2.2 Configuración Multiswitch MS0 (Servidor VTP)](#622-configuración-multiswitch-ms0-servidor-vtp)
-      - [6.2.3 Configuración Routers](#623-configuración-routers)
-        - [6.2.3.1 R0](#6231-r0)
-        - [6.2.3.2 R1](#6232-r1)
-      - [6.2.4 Conexiones entre los switches y routers](#624-conexiones-entre-los-switches-y-routers)
-      - [6.2.5 Conexiones a dispositivos finales](#625-conexiones-a-dispositivos-finales)
-    - [6.3 Edificio T4](#63-edificio-t4)
-      - [6.3.1 Configuraciones Switches](#631-configuraciones-switches)
-        - [6.3.1.1 SW7](#6311-sw7)
-        - [6.3.1.2 SW8 (Servidor VTP)](#6312-sw8-servidor-vtp)
-        - [6.3.1.3 SW9](#6313-sw9)
-      - [6.3.2 Configuración Multiswitch MS5](#632-configuración-multiswitch-ms5)
-      - [6.3.3 Conexiones entre los switches](#633-conexiones-entre-los-switches)
-      - [6.3.4 Conexiones a dispositivos finales](#634-conexiones-a-dispositivos-finales)
-    - [6.4 Edificio S11](#64-edificio-s11)
-      - [6.4.1 Configuraciones Switches](#641-configuraciones-switches)
-        - [6.4.1.1 SW10](#6411-sw10)
-        - [6.4.1.1 SW11 (Servidor VTP)](#6411-sw11-servidor-vtp)
-        - [6.4.1.1 SW12](#6411-sw12)
-      - [6.4.2 Configuración Routers](#642-configuración-routers)
-        - [6.4.2.1 R10](#6421-r10)
-        - [6.4.2.2 R11](#6422-r11)
-      - [6.4.3 Conexiones entre los switches](#643-conexiones-entre-los-switches)
-      - [6.4.4 Conexiones a dispositivos finales](#644-conexiones-a-dispositivos-finales)
-    - [6.5 Edificio S12](#65-edificio-s12)
-      - [6.5.1 Configuraciones Switches](#651-configuraciones-switches)
-        - [6.5.1.1 SW13](#6511-sw13)
-        - [6.5.1.2 SW14](#6512-sw14)
-        - [6.5.1.3 SW15](#6513-sw15)
-        - [6.5.1.4 SW16](#6514-sw16)
-        - [6.5.1.5 SW17](#6515-sw17)
-      - [6.5.2 Configuración Multiswitches](#652-configuración-multiswitches)
-        - [6.5.1.3 MS7](#6513-ms7)
-        - [6.5.1.3 MS8](#6513-ms8)
-        - [6.5.1.3 MS9 (Servidor VTP)](#6513-ms9-servidor-vtp)
-      - [6.5.3 Conexiones entre los switches](#653-conexiones-entre-los-switches)
-      - [6.5.4 Conexiones a dispositivos finales](#654-conexiones-a-dispositivos-finales)
-    - [6.6 BACKBONE](#66-backbone)
-    - [6.6.1 Configuración Routers](#661-configuración-routers)
-      - [6.6.1.1 R2](#6611-r2)
-      - [6.6.1.2 R3](#6612-r3)
-      - [6.6.1.3 R4](#6613-r4)
-      - [6.6.1.4 R5](#6614-r5)
-      - [6.6.1.5 R6](#6615-r6)
-      - [6.6.1.6 R7](#6616-r7)
-      - [6.6.1.7 R8](#6617-r8)
-      - [6.6.1.7 R9](#6617-r9)
-    - [6.6.2 Configuración de MultiSwitches](#662-configuración-de-multiswitches)
-      - [6.6.2.1 MS3](#6621-ms3)
-      - [6.6.2.1 MS4](#6621-ms4)
-      - [6.6.2.1 MS6](#6621-ms6)
-      - [6.6.3 RIP (Routing Information Protocol)](#663-rip-routing-information-protocol)
-      - [6.6.4 OSPF (Open Shortest Path First)](#664-ospf-open-shortest-path-first)
-      - [6.6.5 EIGRP (Enhances Interior Gateway Routing Protocol)](#665-eigrp-enhances-interior-gateway-routing-protocol)
-      - [6.6.6 Rutas Estáticas](#666-rutas-estáticas)
+  - [3. Descripción](#3-descripción)
+    - [3.1 Tecnologías Principales](#31-tecnologías-principales)
+    - [3.2 Características Clave](#32-características-clave)
+  - [4. Pasos de Despliegue](#4-pasos-de-despliegue)
+  - [5. Guía DBeaver](#5-guía-dbeaver)
+    - [5.1 Instalación de DBeaver](#51-instalación-de-dbeaver)
+    - [5.2 Uso de DBeaver](#52-uso-de-dbeaver)
+  - [6. Uso de Endpoints](#6-uso-de-endpoints)
+  - [7. Capturas de evidencias](#7-capturas-de-evidencias)
+
 
 
 ## 1. Objetivos
@@ -145,15 +56,60 @@
 
 ## 3. Descripción
 
+Este proyecto consiste en el desarrollo e implementación de un **backend** para el sistema de gestión de **Centros de Evaluación**. El sistema está diseñado para dar respuesta a la necesidad de administrar y consultar evaluaciones teóricas y prácticas de manera eficiente y centralizada.
 
+La solución se centra en la creación de una arquitectura de servicios portable y reproducible. Para ello, se ha contenerizado la base de datos relacional utilizando **Docker** y **Docker Compose**, garantizando un entorno de desarrollo y despliegue consistente que se puede levantar con un solo comando.
+
+Sobre esta base de datos, se ha desarrollado una **API REST** con **Node.js** y **Express**, que actúa como intermediario para todas las operaciones de datos. La API expone un conjunto completo de endpoints para gestionar la información del sistema, siguiendo las mejores prácticas de diseño de APIs.
+
+El resultado final es un backend robusto, portable y fácil de probar, sentando las bases para futuras expansiones del sistema, como la integración de una interfaz de usuario (frontend).
+
+### 3.1 Tecnologías Principales
+* **Contenerización:** Docker, Docker Compose
+* **API Backend:** Node.js, Express.js
+* **Base de Datos:** Base de datos relacional (Oracle Database) gestionada en un contenedor.
+* **Cliente de BD:** DBeaver para administración y consulta directa.
+* **Pruebas de API:** Postman
+
+### 3.2 Características Clave
+
+* **Infraestructura como Código:** Uso de docker-compose.yml para definir y ejecutar todo el entorno de la aplicación.
+* **API RESTful:** Endpoints para operaciones CRUD (Crear, Leer, Actualizar, Borrar) en todas las tablas del sistema.
+* **Consultas Personalizadas:** Exposición de 3 consultas SQL predefinidas a través de endpoints específicos para obtener datos complejos o reportes.
+* **Validación y Documentación:** Colección completa en Postman para probar, validar y documentar cada endpoint de la API.
 
 ## 4. Pasos de Despliegue
 
 
 ## 5. Guía DBeaver
 
+### 5.1 Instalación de DBeaver
+1. Se busca la página oficial de DBeaver y se selcción la pestaña de Download:
+![Imagen1](./imgs/i1.png)
+2. Se escoge la opción correpondiente al sistema operativo (en este caso es el de windows):
+![Imagen2](./imgs/i2.png)
+3. Una vez descargado se abre el instalador:
+![Imagen3](./imgs/i3.png)
+4. Se da click en siguiente:
+![Imagen4](./imgs/i4.png)
+5. Se acepta el contrato de licencia:
+![Imagen5](./imgs/i5.png)
+6. Se escoge si se desea instalar para todos los usuario o solo para el usuario de la sesión:
+![Imagen6](./imgs/i6.png)
+7. Se da nuevamente a siguiente ya que se reinició el programa como administrador para poder instalarse para todos lo usuario (si se escoge la opción de un único usuario, eso no sucede):
+![Imagen7](./imgs/i7.png)
+8. Nuevamente acepto lo términos y condiciones:
+![Imagen8](./imgs/i8.png)
+9.  Se agregan los componentes que sean necesario (para este caso no se necesita ninguno de estos, igualmente se pueden agregar posteriormente):
+![Imagen9](./imgs/i9.png)
+10. Se escoge la ruta:
+![Imagen10](./imgs/i10.png)
+11. Se escoge la carpeta de Menú de Inicio:
+![Imagen11](./imgs/i11.png)
+12. Una vez ya finalizado el proceso de instalación, si se desea se agrega un acceso directo:
+![Imagen12](./imgs/i12.png)
 
-
+### 5.2 Uso de DBeaver
 
 ## 6. Uso de Endpoints
 
