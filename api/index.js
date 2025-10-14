@@ -71,6 +71,8 @@ app.use('/api/municipios', municipioRoutes);
 const ubicacionRoutes = require('./routes/ubicacion.routes');
 app.use('/api/ubicaciones', ubicacionRoutes);
 
+const registroRoutes = require('./routes/registro.routes');
+app.use('/api/registros', registroRoutes);
 
 
 
