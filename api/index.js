@@ -50,8 +50,11 @@ app.get('/', (req, res) => {
 const centroRoutes = require('./routes/centro.routes');
 app.use('/api/centros', centroRoutes);
 
+const departamentoRoutes = require('./routes/departamento.routes');
+app.use('/api/departamentos', departamentoRoutes);
 
-
+const correlativoRoutes = require('./routes/correlativo.routes');
+app.use('/api/correlativos', correlativoRoutes);
 
 
 // Ruta para probar la conexión a la BD
