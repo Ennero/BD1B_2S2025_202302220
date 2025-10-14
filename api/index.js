@@ -59,6 +59,8 @@ app.use('/api/correlativos', correlativoRoutes);
 const escuelaRoutes = require('./routes/escuela.routes');
 app.use('/api/escuelas', escuelaRoutes);
 
+const pregRoutes = require('./routes/preg.routes');
+app.use('/api/preguntas', pregRoutes);
 
 
 
