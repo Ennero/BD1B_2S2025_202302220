@@ -140,9 +140,6 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: 'Escuela eliminada exitosamente.' });
     } catch (err) {
         console.error(err);
-        if (err.errorNum === 2292) {
-            return res.status(409).json({ message: 'Error: No se puede eliminar la escuela porque está siendo utilizada en otra tabla (Ubicacion).' });
-        }
         res.status(500).json({ message: 'Error al eliminar la escuela.' });
     } finally {
         if (connection) {

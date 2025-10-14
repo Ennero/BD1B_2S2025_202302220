@@ -195,9 +195,6 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: 'Examen eliminado exitosamente.' });
     } catch (err) {
         console.error(err);
-        if (err.errorNum === 2292) {
-            return res.status(409).json({ message: 'Error: No se puede eliminar el examen porque está siendo utilizado (por ejemplo, en respuestas de usuario).' });
-        }
         res.status(500).json({ message: 'Error al eliminar el examen.' });
     } finally {
         if (connection) {

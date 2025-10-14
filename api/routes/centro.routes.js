@@ -140,10 +140,6 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: 'Centro eliminado exitosamente.' });
     } catch (err) {
         console.error(err);
-        // Manejar error de llave foránea (si un centro está en uso)
-        if (err.errorNum === 2292) {
-            return res.status(409).json({ message: 'Error: No se puede eliminar el centro porque está siendo utilizado en otra tabla.' });
-        }
         res.status(500).json({ message: 'Error al eliminar el centro.' });
     } finally {
         if (connection) {

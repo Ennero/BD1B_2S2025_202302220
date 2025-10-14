@@ -153,9 +153,6 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: 'Pregunta eliminada exitosamente.' });
     } catch (err) {
         console.error(err);
-        if (err.errorNum === 2292) {
-            return res.status(409).json({ message: 'Error: No se puede eliminar la pregunta porque está siendo utilizada en otra tabla (Respuesta Usuario).' });
-        }
         res.status(500).json({ message: 'Error al eliminar la pregunta.' });
     } finally {
         if (connection) {

@@ -140,9 +140,6 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: 'Departamento eliminado exitosamente.' });
     } catch (err) {
         console.error(err);
-        if (err.errorNum === 2292) {
-            return res.status(409).json({ message: 'Error: No se puede eliminar el departamento porque está siendo utilizado en otra tabla (Municipio).' });
-        }
         res.status(500).json({ message: 'Error al eliminar el departamento.' });
     } finally {
         if (connection) {

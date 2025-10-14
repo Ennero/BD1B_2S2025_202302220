@@ -141,9 +141,6 @@ router.delete('/escuela/:escuelaId/centro/:centroId', async (req, res) => {
         res.status(200).json({ message: 'Ubicación eliminada exitosamente.' });
     } catch (err) {
         console.error(err);
-        if (err.errorNum === 2292) {
-            return res.status(409).json({ message: 'Error: No se puede eliminar la ubicación porque está siendo utilizada en otra tabla (Registro).' });
-        }
         res.status(500).json({ message: 'Error al eliminar la ubicación.' });
     } finally {
         if (connection) {

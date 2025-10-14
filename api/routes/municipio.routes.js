@@ -170,9 +170,6 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: 'Municipio eliminado exitosamente.' });
     } catch (err) {
         console.error(err);
-        if (err.errorNum === 2292) {
-            return res.status(409).json({ message: 'Error: No se puede eliminar el municipio porque está siendo utilizado en otra tabla (Registro).' });
-        }
         res.status(500).json({ message: 'Error al eliminar el municipio.' });
     } finally {
         if (connection) {

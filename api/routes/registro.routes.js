@@ -207,9 +207,6 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: 'Registro deleted successfully.' });
     } catch (err) {
         console.error(err);
-        if (err.errorNum === 2292) {
-            return res.status(409).json({ message: 'Error: Cannot delete this registro because it is being used in another table (Examen).' });
-        }
         res.status(500).json({ message: 'Error deleting registro.' });
     } finally {
         if (connection) {
