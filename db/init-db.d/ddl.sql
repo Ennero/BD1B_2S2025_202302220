@@ -1,3 +1,19 @@
+-- ### 0. CREACIÓN DEL USUARIO Y ASIGNACIÓN DE PERMISOS
+-- Nota: 'IDENTIFIED BY' establece la contraseña del usuario.
+-- Cámbiala por una contraseña segura de tu elección.
+CREATE USER API_USER IDENTIFIED BY tu_password_seguro;
+
+-- Otorgar permisos básicos para que el usuario pueda conectarse y crear objetos
+GRANT CONNECT, RESOURCE, DBA TO API_USER;
+GRANT CREATE SESSION TO API_USER;
+GRANT CREATE TABLE TO API_USER;
+GRANT CREATE VIEW TO API_USER;
+ALTER USER API_USER QUOTA UNLIMITED ON USERS;
+
+-- Cambiar la sesión actual para que todos los comandos siguientes
+-- se ejecuten en el esquema del nuevo usuario. ¡Esta línea es clave!
+ALTER SESSION SET CURRENT_SCHEMA = API_USER;
+
 -- ### 1. CREACIÓN DE TABLAS (SIN LLAVES FORÁNEAS)
 CREATE TABLE CENTRO (
     ID_CENTRO NUMBER NOT NULL,
