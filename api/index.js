@@ -68,6 +68,8 @@ app.use('/api/preguntas-practicas', pregPractRoutes);
 const municipioRoutes = require('./routes/municipio.routes');
 app.use('/api/municipios', municipioRoutes);
 
+const ubicacionRoutes = require('./routes/ubicacion.routes');
+app.use('/api/ubicaciones', ubicacionRoutes);
 
 
 
