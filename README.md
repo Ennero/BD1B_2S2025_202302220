@@ -24,8 +24,15 @@
   - [5. Guía DBeaver](#5-guía-dbeaver)
     - [5.1 Instalación de DBeaver](#51-instalación-de-dbeaver)
     - [5.2 Uso de DBeaver](#52-uso-de-dbeaver)
-  - [6. Uso de Endpoints](#6-uso-de-endpoints)
-  - [7. Capturas de evidencias](#7-capturas-de-evidencias)
+  - [6. Backend y API REST](#6-backend-y-api-rest)
+    - [6.1. Configuración del Proyecto Node.js](#61-configuración-del-proyecto-nodejs)
+    - [6.2. Servidor y Conexión a la Base de Datos](#62-servidor-y-conexión-a-la-base-de-datos)
+    - [6.3. Desarrollo de Endpoints CRUD completos](#63-desarrollo-de-endpoints-crud-completos)
+      - [6.3.1. Patrón de Implementación](#631-patrón-de-implementación)
+      - [6.3.2. Lógica de Negocio y Validaciones](#632-lógica-de-negocio-y-validaciones)
+      - [6.3.3. Implementación de Eliminación en Cascada](#633-implementación-de-eliminación-en-cascada)
+  - [7. Uso de Endpoints](#7-uso-de-endpoints)
+  - [8. Capturas de evidencias](#8-capturas-de-evidencias)
 
 
 
@@ -89,6 +96,38 @@ El resultado final es un backend robusto, portable y fácil de probar, sentando 
 ## 4. Pasos de Despliegue
 
 A continuación se detalla el proceso completo para configurar y lanzar un entorno de base de datos Oracle 21c contenerizado usando Docker. El objetivo es crear un ambiente de desarrollo portable, reproducible y aislado que cargue automáticamente el esquema de la base de datos "Centros de Evaluación de Manejo".
+
+**Estructura del proyecto**
+```
+api/
+├── node_modules/
+├── routes/
+│   ├── centro.routes.js
+│   ├── correlativo.routes.js
+│   ├── departamento.routes.js
+│   ├── escuela.routes.js
+│   ├── examen.routes.js
+│   ├── municipio.routes.js
+│   ├── preg_pract.routes.js
+│   ├── preg.routes.js
+│   ├── registro.routes.js
+│   ├── res_pract_usu.routes.js
+│   ├── res_usu.routes.js
+│   └── ubicacion.routes.js
+├── .env
+├── dockerfile
+├── index.js
+├── package-lock.json
+└── package.json
+db/
+└── ddl.sql
+docs/
+└── Proyecto_Fase2.pdf
+imgs/
+.gitignore
+docker-compose.yml
+README.md
+```
 
 ### 4.1. Configuración del Proyecto y Docker
 
@@ -219,11 +258,69 @@ El paso final fue confirmar que la base de datos no solo estaba corriendo, sino 
 ![Imagen17](./imgs/j5.png)
 6. Una vez que se haya logrado establecer conexión correctamente, se mostrará la base de datos al lado izquierdo.  
 ![Imagen18](./imgs/j6.png)
-7. 
-## 6. Uso de Endpoints
 
 
-## 7. Capturas de evidencias
+## 6. Backend y API REST
+Con la base de datos funcional, se procedió a construir el API que sirve como intermediario para todas las operaciones de datos.
+
+### 6.1. Configuración del Proyecto Node.js
+
+
+**Inicialización:** Se inicializó un proyecto de Node.js en la carpeta `/api` con `npm init -y`.
+
+**Instalación de Dependencias:** Se instalaron las siguientes librerías clave:
+
+- **express:** Framework para la construcción del servidor y las rutas.
+- **oracledb:** Driver oficial para la conexión con la base de datos Oracle.
+- **cors:** Middleware para permitir peticiones desde diferentes orígenes.
+- **dotenv:** Para manejar variables de entorno y no exponer credenciales en el código.
+- **nodemon:** Para reiniciar automáticamente el servidor durante el desarrollo.
+
+**Estructura Modular:** Se creó una carpeta `/api/routes` para alojar un archivo de rutas por cada tabla, manteniendo el archivo principal `index.js` limpio y organizado.
+
+### 6.2. Servidor y Conexión a la Base de Datos
+En `index.js`, se configuró un servidor Express básico y se estableció un pool de conexiones a la base de datos Oracle al iniciar la aplicación. Se utilizó el archivo `.env` para cargar de forma segura las credenciales (`DB_USER`, `DB_PASSWORD`, `DB_CONNECT_STRING`).
+
+### 6.3. Desarrollo de Endpoints CRUD completos
+
+Se implementaron endpoints para las operaciones CRUD (GET, POST, PUT, DELETE) para cada una de las 12 tablas.
+
+#### 6.3.1. Patrón de Implementación
+
+Para cada tabla, se siguió un patrón consistente:
+
+**Archivo de Rutas Dedicado:** (e.g., `centro.routes.js`).
+
+- **GET (Todos):** Una ruta `GET /` para obtener todos los registros, usualmente ordenados por su ID.
+- **GET (Por ID):** Una ruta `GET /:id` para obtener un registro específico.
+- **POST (Crear):** Una ruta `POST /` que recibe datos en el body, valida la presencia de campos requeridos y las llaves foráneas antes de ejecutar el INSERT.
+- **PUT (Actualizar):** Una ruta `PUT /:id` para modificar un registro existente.
+- **DELETE (Eliminar):** Una ruta `DELETE /:id` para borrar un registro.
+
+
+#### 6.3.2. Lógica de Negocio y Validaciones
+
+**Validación de Llaves Foráneas:** En las rutas POST y PUT de tablas dependientes (ej. MUNICIPIO), se implementaron funciones auxiliares para consultar a la base de datos y verificar que el "padre" (ej. DEPARTAMENTO) existe antes de permitir la operación.
+
+**Manejo de Llaves Primarias Compuestas:** Para la tabla UBICACION, se diseñaron rutas específicas como `DELETE /escuela/:escuelaId/centro/:centroId` para poder identificar y operar sobre registros que tienen una clave compuesta.
+
+**Manejo de Errores:** Se implementó un manejo de errores robusto para devolver códigos de estado HTTP apropiados (ej. 404 Not Found, 409 Conflict para IDs duplicados, 400 Bad Request para datos faltantes, y 500 Internal Server Error para fallos inesperados).
+
+#### 6.3.3. Implementación de Eliminación en Cascada
+
+Para mejorar la integridad y la lógica de negocio, se decidió modificar el comportamiento de eliminación por defecto.
+
+**Modificación del DDL:** Se actualizó el archivo `db/ddl.sql`, añadiendo la cláusula `ON DELETE CASCADE` a todas las definiciones de llaves foráneas. Esto instruye a la base de datos para que, al eliminar un registro "padre", elimine automáticamente todos los registros "hijo" que dependen de él.
+
+**Simplificación del API:** Con la lógica de eliminación ahora delegada a la base de datos, se refactorizó el código de todos los endpoints DELETE en el API. Se eliminó el bloque de código que manejaba el error de restricción de Oracle (`err.errorNum === 2292`), resultando en un código más limpio y directo.
+
+Este cambio asegura que la lógica de negocio sea consistente y esté centralizada en la capa de datos, que es la más adecuada para manejar este tipo de reglas de integridad.
+
+
+## 7. Uso de Endpoints
+
+
+## 8. Capturas de evidencias
 
 
 

@@ -8,7 +8,7 @@ services:
     environment:
       - ORACLE_PASSWORD=admin123
     volumes:
-      - ./database/init-db.d:/container-entrypoint-initdb.d
+      - ./db/init-db.d:/container-entrypoint-initdb.d
 
   api:
     container_name: node-api
