@@ -74,7 +74,14 @@ app.use('/api/ubicaciones', ubicacionRoutes);
 const registroRoutes = require('./routes/registro.routes');
 app.use('/api/registros', registroRoutes);
 
+const examenRoutes = require('./routes/examen.routes');
+app.use('/api/examenes', examenRoutes);
 
+const resPractUsuRoutes = require('./routes/res_pract_usu.routes');
+app.use('/api/respuestas-practicas', resPractUsuRoutes);
+
+const resUsuRoutes = require('./routes/res_usu.routes');
+app.use('/api/respuestas-usuario', resUsuRoutes);
 
 
 
