@@ -83,7 +83,9 @@ app.use('/api/respuestas-practicas', resPractUsuRoutes);
 const resUsuRoutes = require('./routes/res_usu.routes');
 app.use('/api/respuestas-usuario', resUsuRoutes);
 
-
+// Consultas
+const consultasRoutes = require('./routes/consultas.routes');
+app.use('/api/consultas', consultasRoutes);
 
 // Ruta para probar la conexión a la BD
 app.get('/test-db', async (req, res) => {

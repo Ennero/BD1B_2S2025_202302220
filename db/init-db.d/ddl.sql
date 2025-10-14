@@ -1,6 +1,5 @@
 -- ### 0. CREACIÓN DEL USUARIO Y ASIGNACIÓN DE PERMISOS
 -- Nota: 'IDENTIFIED BY' establece la contraseña del usuario.
--- Cámbiala por una contraseña segura de tu elección.
 CREATE USER API_USER IDENTIFIED BY tu_password_seguro;
 
 -- Otorgar permisos básicos para que el usuario pueda conectarse y crear objetos
