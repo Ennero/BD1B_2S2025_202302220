@@ -62,6 +62,8 @@ app.use('/api/escuelas', escuelaRoutes);
 const pregRoutes = require('./routes/preg.routes');
 app.use('/api/preguntas', pregRoutes);
 
+const pregPractRoutes = require('./routes/preg_pract.routes');
+app.use('/api/preguntas-practicas', pregPractRoutes);
 
 
 
