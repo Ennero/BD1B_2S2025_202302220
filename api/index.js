@@ -44,6 +44,16 @@ app.get('/', (req, res) => {
     res.json({ message: '¡Bienvenido al API de Centros de Evaluación!' });
 });
 
+
+
+// Rutas del API
+const centroRoutes = require('./routes/centro.routes');
+app.use('/api/centros', centroRoutes);
+
+
+
+
+
 // Ruta para probar la conexión a la BD
 app.get('/test-db', async (req, res) => {
     let connection;

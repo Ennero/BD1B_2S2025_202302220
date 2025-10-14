@@ -217,8 +217,9 @@ El paso final fue confirmar que la base de datos no solo estaba corriendo, sino 
 ![Imagen16](./imgs/j4.png)
 5. Una vez instalados, se muestra que la conexión se realizó correctamente.
 ![Imagen17](./imgs/j5.png)
-6. Una vez ya dentro de la 
-
+6. Una vez que se haya logrado establecer conexión correctamente, se mostrará la base de datos al lado izquierdo.  
+![Imagen18](./imgs/j6.png)
+7. 
 ## 6. Uso de Endpoints
 
 

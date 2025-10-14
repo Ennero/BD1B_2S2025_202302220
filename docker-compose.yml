@@ -1,15 +1,34 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  oracle-db:
-    image: gvenzl/oracle-xe:21-slim-faststart
-    container_name: mi-base-de-datos-oracle
+  db:
+    image: gvenzl/oracle-xe:latest
     ports:
       - "1521:1521"
     environment:
-      - ORACLE_PASSWORD=1234
+      - ORACLE_PASSWORD=admin123
     volumes:
-      - ./db:/docker-entrypoint-initdb.d
+      - ./database/init-db.d:/container-entrypoint-initdb.d
 
-volumes:
-  db-data:
+  api:
+    container_name: node-api
+    # Construye la imagen del API usando el Dockerfile en la carpeta ./api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+      # Especificamos que use la fase 'dev' del Dockerfile
+      target: dev
+    ports:
+      - "3000:3000"
+    # Carga las variables de entorno desde el archivo .env
+    env_file:
+      - ./api/.env
+    # hot-reloading
+    volumes:
+      - ./api:/usr/src/app
+      # Evitar que node_modules local sobreescriba el del contenedor
+      - /usr/src/app/node_modules
+    # 'depends_on' con 'condition: service_healthy' espera a que el healthcheck de la BD pase
+    depends_on:
+      db:
+        condition: service_healthy

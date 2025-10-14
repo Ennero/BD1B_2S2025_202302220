@@ -1,0 +1,25 @@
+FROM node:18-alpine AS base
+
+# Establecer el directorio de trabajo dentro del contenedor
+WORKDIR /usr/src/app
+
+# Copiar los archivos de definición de dependencias
+COPY package*.json ./
+
+# Instalar dependencias de producción
+RUN npm ci --only=production
+
+# Copiar el resto del código de la aplicación
+COPY . .
+
+# Para el desarrollo con hot-reloading
+FROM base AS dev
+
+# Instalar TODAS las dependencias, incluidas las de desarrollo como nodemon
+RUN npm install
+
+# Exponer el puerto que usará la aplicación
+EXPOSE 3000
+
+# El comando por defecto para iniciar el servidor de desarrollo
+CMD [ "npm", "run", "dev" ]
