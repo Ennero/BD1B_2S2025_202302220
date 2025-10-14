@@ -56,6 +56,17 @@ app.use('/api/departamentos', departamentoRoutes);
 const correlativoRoutes = require('./routes/correlativo.routes');
 app.use('/api/correlativos', correlativoRoutes);
 
+const escuelaRoutes = require('./routes/escuela.routes');
+app.use('/api/escuelas', escuelaRoutes);
+
+
+
+
+
+
+
+
+
 
 // Ruta para probar la conexión a la BD
 app.get('/test-db', async (req, res) => {
