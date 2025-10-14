@@ -13,14 +13,25 @@
     - [3.1 Tecnologías Principales](#31-tecnologías-principales)
     - [3.2 Características Clave](#32-características-clave)
   - [4. Pasos de Despliegue](#4-pasos-de-despliegue)
-    - [4.1. Configuración del Proyecto y Docker](#41-configuración-del-proyecto-y-docker)
-      - [Paso 1: Creación y Estructura del Proyecto](#paso-1-creación-y-estructura-del-proyecto)
-        - [Paso 2: Configuración de Docker Compose](#paso-2-configuración-de-docker-compose)
-    - [4.2. Ejecución y Solución de Problemas](#42-ejecución-y-solución-de-problemas)
-      - [Paso 1: Levantar el Contenedor](#paso-1-levantar-el-contenedor)
-      - [Paso 2: Verificación del Estado](#paso-2-verificación-del-estado)
-    - [4.3 Conexión y Validación de la Base de Datos](#43-conexión-y-validación-de-la-base-de-datos)
-    - [4.4 +++++++++++++++++++++++++++++++++++++++++++](#44-)
+    - [Fase 0: Entendiendo la Arquitectura del Sistema](#fase-0-entendiendo-la-arquitectura-del-sistema)
+      - [Contenedor db (Oracle Database)](#contenedor-db-oracle-database)
+      - [Contenedor api (Node.js API)](#contenedor-api-nodejs-api)
+      - [Docker Compose](#docker-compose)
+      - [Diagrama Conceptual](#diagrama-conceptual)
+    - [Fase 1: Preparación del Entorno (Pre-vuelo)](#fase-1-preparación-del-entorno-pre-vuelo)
+      - [Requisitos Previos](#requisitos-previos)
+    - [Fase 2: Configuración Crítica de Archivos](#fase-2-configuración-crítica-de-archivos)
+      - [2.1. El Corazón de la Base de Datos: ddl.sql](#21-el-corazón-de-la-base-de-datos-ddlsql)
+        - [Análisis del Script](#análisis-del-script)
+      - [2.2. El Secreto de la API: El archivo .env](#22-el-secreto-de-la-api-el-archivo-env)
+    - [Fase 3: El Despegue con Docker Compose](#fase-3-el-despegue-con-docker-compose)
+      - [Análisis del Comando](#análisis-del-comando)
+      - [¿Qué sucede detrás de escena?](#qué-sucede-detrás-de-escena)
+    - [Fase 4: Verificación y Conexión Post-despliegue](#fase-4-verificación-y-conexión-post-despliegue)
+      - [4.1. Verificación con Docker](#41-verificación-con-docker)
+        - [Listar Contenedores en Ejecución](#listar-contenedores-en-ejecución)
+        - [Revisar los Logs (Registros)](#revisar-los-logs-registros)
+      - [4.2. Conexión Final con DBeaver](#42-conexión-final-con-dbeaver)
   - [5. Guía DBeaver](#5-guía-dbeaver)
     - [5.1 Instalación de DBeaver](#51-instalación-de-dbeaver)
     - [5.2 Uso de DBeaver](#52-uso-de-dbeaver)
@@ -95,126 +106,174 @@ El resultado final es un backend robusto, portable y fácil de probar, sentando 
 
 ## 4. Pasos de Despliegue
 
-A continuación se detalla el proceso completo para configurar y lanzar un entorno de base de datos Oracle 21c contenerizado usando Docker. El objetivo es crear un ambiente de desarrollo portable, reproducible y aislado que cargue automáticamente el esquema de la base de datos "Centros de Evaluación de Manejo".
+### Fase 0: Entendiendo la Arquitectura del Sistema
 
-**Estructura del proyecto**
+Antes de escribir cualquier comando, es vital comprender cómo interactúan los componentes. Nuestro sistema se basa en una arquitectura de microservicios contenerizada:
+
+#### Contenedor db (Oracle Database)
+
+- **Imagen**: `gvenzl/oracle-xe:latest`. Una imagen popular y optimizada de Oracle Express Edition.
+- **Función**: Alberga la base de datos. Es el cerebro persistente de nuestra aplicación. Al iniciar, ejecuta automáticamente cualquier script `.sql` que encuentre en la carpeta montada, lo que nos permite inicializar el esquema y crear nuestro usuario `API_USER` de forma automática.
+
+#### Contenedor api (Node.js API)
+
+- **Imagen**: Construida a partir de nuestro propio Dockerfile.
+- **Función**: Expone los endpoints REST para interactuar con la base de datos. Contiene toda la lógica de negocio. Se conecta al contenedor `db` usando la red interna que Docker crea automáticamente.
+
+#### Docker Compose
+
+- **Archivo**: `docker-compose.yml`.
+- **Función**: Es el director de orquesta. Define los servicios (`db`, `api`), cómo se construyen, cómo se conectan entre sí y qué volúmenes y puertos utilizan. Nos permite levantar y destruir todo el entorno con un solo comando.
+
+#### Diagrama Conceptual
+
 ```
-api/
-├── node_modules/
-├── routes/
-│   ├── centro.routes.js
-│   ├── correlativo.routes.js
-│   ├── departamento.routes.js
-│   ├── escuela.routes.js
-│   ├── examen.routes.js
-│   ├── municipio.routes.js
-│   ├── preg_pract.routes.js
-│   ├── preg.routes.js
-│   ├── registro.routes.js
-│   ├── res_pract_usu.routes.js
-│   ├── res_usu.routes.js
-│   └── ubicacion.routes.js
-├── .env
-├── dockerfile
-├── index.js
-├── package-lock.json
-└── package.json
-db/
-└── ddl.sql
-docs/
-└── Proyecto_Fase2.pdf
-imgs/
-.gitignore
-docker-compose.yml
-README.md
+[Tu Máquina] <--> [DBeaver] <--> [Contenedor 'db' (Oracle)] <--> [Contenedor 'api' (Node.js)] <--> [Postman/Cliente]
 ```
 
-### 4.1. Configuración del Proyecto y Docker
+### Fase 1: Preparación del Entorno (Pre-vuelo)
 
-Aqui el objetivo es preparar la estructura del proyecto y el archivo de configuración de Docker Compose para orquestar nuestro contenedor de base de datos.
+Asegúrate de tener las herramientas necesarias antes de comenzar.
 
-#### Paso 1: Creación y Estructura del Proyecto
+#### Requisitos Previos
 
-**Control de Versiones:** Se inicializó un repositorio en GitHub con el nombre estandarizado `BD1B_2S2025_202302220` para el control de versiones del proyecto.
+- **Docker Desktop**: Es la forma más sencilla de obtener tanto Docker Engine como Docker Compose en Windows y macOS. Asegúrate de que el motor de Docker esté en ejecución.
+- **Cliente de Base de Datos**: Se recomienda DBeaver por su versatilidad, pero cualquier cliente compatible con Oracle (como Oracle SQL Developer) funcionará.
+- **Código Fuente**: Clona o descarga el repositorio del proyecto en tu máquina local.
 
-**Estructura de Carpetas:** Se creó una carpeta `db` en la raíz del proyecto. Esta carpeta está destinada a contener todos los scripts de inicialización de la base de datos.
+### Fase 2: Configuración Crítica de Archivos
 
-**Script de Base de Datos (DDL):** Dentro de la carpeta `db`, se creó un archivo llamado `ddl.sql`. En este archivo se copió íntegramente el script SQL proporcionado, el cual contiene todas las sentencias `CREATE TABLE` y `ALTER TABLE` necesarias para definir la estructura completa (tablas, llaves primarias y foráneas) de nuestra base de datos.
+Este es el paso más importante. Una configuración incorrecta aquí es la causa del 90% de los problemas de despliegue.
 
-##### Paso 2: Configuración de Docker Compose
+#### 2.1. El Corazón de la Base de Datos: ddl.sql
 
-Para orquestar el contenedor, se creó un archivo `docker-compose.yml` en la raíz del proyecto. Este archivo actúa como un plano que le indica a Docker cómo debe configurar y ejecutar nuestro servicio de base de datos.
+Este archivo no solo crea las tablas, sino que prepara el entorno de seguridad dentro de Oracle.
 
-El contenido del archivo es el siguiente:
+- **Ubicación**: `/db/ddl.sql`
+- **Acción Requerida**: Define una contraseña segura para el usuario de la aplicación.
 
-```yaml
-version: '3.8'
+**¡IMPORTANTE!** Dentro del archivo `ddl.sql`, localiza esta sección al inicio:
 
-services:
-  oracle-db:
-    image: gvenzl/oracle-xe:21-slim-faststart
-    container_name: mi-base-de-datos-oracle
-    ports:
-      - "1521:1521"
-    environment:
-      - ORACLE_PASSWORD=1234
-    volumes:
-      - ./db:/docker-entrypoint-initdb.d
+```sql
+-- ### 0. CREACIÓN DEL USUARIO Y ASIGNACIÓN DE PERMISOS
+CREATE USER API_USER IDENTIFIED BY tu_password_seguro;
 ```
 
-**Descripción de la configuración:**
+Sustituye `tu_password_seguro` por una contraseña real (en este caso, realmente se usó la contraseña `tu_password_seguro`). Esta es la clave que la API usará para autenticarse.
 
-- **services:** Define el conjunto de contenedores que nuestra aplicación necesita.
-- **oracle-db:** Es el nombre lógico de nuestro servicio de base de datos.
-- **image:** Se especificó la imagen `gvenzl/oracle-xe:21-slim-faststart`, una imagen pública y optimizada de Oracle Database 21c Express Edition. Al usar una imagen pre-construida, no necesitamos crear nuestro propio Dockerfile.
-- **ports:** Se mapeó el puerto 1521 del contenedor al puerto 1521 de nuestra máquina local (host). Esto nos permite conectarnos a la base de datos desde herramientas locales como DBeaver como si estuviera instalada directamente en nuestro PC.
-- **environment:** Se definió una variable de entorno `ORACLE_PASSWORD` con el valor `1234`. La imagen de Oracle utiliza esta variable para establecer la contraseña de los usuarios administrativos (SYS y SYSTEM) durante la creación de la base de datos.
-- **volumes:** Esta es la directiva clave para la automatización. Se montó la carpeta local `./db` en la ruta `/docker-entrypoint-initdb.d` dentro del contenedor. La imagen `gvenzl/oracle-xe` está programada para buscar y ejecutar automáticamente cualquier script con extensión `.sql` que encuentre en ese directorio la primera vez que se inicia. Esto asegura que nuestro esquema se cree sin intervención manual.
+##### Análisis del Script
 
-### 4.2. Ejecución y Solución de Problemas
+- `CREATE USER API_USER...`: Crea una cuenta dedicada exclusivamente para la aplicación, evitando usar usuarios con privilegios de sistema como `SYS`.
+- `GRANT CONNECT, RESOURCE, DBA...`: Otorga los permisos. `CONNECT` para iniciar sesión, `RESOURCE` para crear tablas/vistas y `DBA` (para desarrollo) para evitar cualquier problema de permisos.
+- `ALTER SESSION SET CURRENT_SCHEMA = API_USER;`: Esta es la línea clave. Asegura que todas las sentencias `CREATE TABLE` posteriores se ejecuten en el esquema de `API_USER`, haciendo que las tablas sean "suyas".
 
-Con los archivos de configuración en su lugar, el siguiente paso es levantar el servicio.
+#### 2.2. El Secreto de la API: El archivo .env
 
-#### Paso 1: Levantar el Contenedor
+Este archivo contiene los secretos que la API necesita para funcionar, como las credenciales de la base de datos. Nunca debe ser subido a un repositorio público.
 
-1. Se abrió una terminal en el directorio raíz del proyecto.
-2. Se ejecutó el comando `docker compose up -d`.
-   - **up:** Instruye a Docker Compose para que inicie los servicios definidos en el archivo `docker-compose.yml`.
-   - **-d:** (Modo "detached") Ejecuta los contenedores en segundo plano, liberando la terminal.
+- **Acción Requerida**: Crea un nuevo archivo de texto.
+- **Ubicación**: `/api/.env` (dentro de la carpeta api).
+- **Contenido**: Copia y pega el siguiente bloque, y asegúrate de que la contraseña coincida con la que pusiste en `ddl.sql`.
 
-Durante este proceso, se encontraron y resolvieron varios problemas comunes:
+```env
+# ==========================================
+# VARIABLES DE ENTORNO PARA EL API NODE.JS
+# ==========================================
 
-**Error 1: no configuration file provided:** Docker no encontraba el archivo `docker-compose.yml`. La causa fue que el nombre del archivo tenía un error tipográfico. Se corrigió el nombre y se verificó con el comando `ls` que el archivo existía en el directorio actual antes de volver a ejecutar el comando.
+# Puerto en el que se expondrá el servidor de la API
+PORT=3000
 
-**Error 2: ports are not available:** El puerto 1521 ya estaba siendo utilizado por otro proceso en la máquina.
-- **Diagnóstico:** Se utilizó el comando `netstat -aon | findstr "1521"` para identificar el PID (Process ID) del proceso que ocupaba el puerto.
-- **Identificación:** Se confirmó con `tasklist` que el proceso pertenecía a una instalación local de Oracle.
-- **Solución:** Se accedió a los Servicios de Windows (`services.msc`), se detuvieron todos los servicios relacionados con Oracle y se configuraron en "Tipo de inicio: Manual" para prevenir futuros conflictos.
+# --- Credenciales para la conexión a Oracle ---
 
-#### Paso 2: Verificación del Estado
+# Usuario de la Base de Datos. Debe ser el mismo que en ddl.sql
+DB_USER=API_USER
 
-Tras solucionar los problemas, el comando `docker-compose up -d` se ejecutó exitosamente. Docker procedió a descargar la imagen de Oracle y, una vez finalizado, inició el contenedor. Se verificó que el contenedor estuviera funcionando correctamente con el comando `docker ps`, el cual mostró el contenedor `mi-base-de-datos-oracle` con el estado `Up ... (healthy)`.
+# Contraseña para el usuario de la BD. ¡Debe coincidir con la de ddl.sql!
+DB_PASSWORD=tu_password_seguro
 
-### 4.3 Conexión y Validación de la Base de Datos
+# Cadena de conexión a la base de datos Oracle
+# - 'db': Es el nombre del servicio de la base de datos en docker-compose.yml. Docker lo resuelve a la IP interna del contenedor.
+# - '1521': El puerto estándar de Oracle.
+# - 'XE': El "Service Name" por defecto para Oracle Express Edition.
+DB_CONNECT_STRING=db:1521/XE
+```
 
-El paso final fue confirmar que la base de datos no solo estaba corriendo, sino que también había creado correctamente el esquema a partir del script `ddl.sql`.
+### Fase 3: El Despegue con Docker Compose
 
-**Herramienta:** Se utilizó el cliente de base de datos DBeaver.
+Ahora que todo está configurado, vamos a dar vida a nuestros servicios.
 
-**Configuración de la Conexión:**
-- **Host:** localhost
-- **Puerto:** 1521
-- **SID:** XE
-- **Usuario:** SYSTEM
-- **Contraseña:** 1234
+1. Abre una terminal (PowerShell, CMD, Terminal de Mac/Linux) en la carpeta raíz de tu proyecto, donde se encuentra el archivo `docker-compose.yml`.
 
-**Confirmación:** La conexión fue exitosa. Al navegar en el explorador de la base de datos bajo el esquema de SYSTEM, se pudo visualizar la lista completa de tablas (CENTRO, DEPARTAMENTO, ESCUELA, etc.), confirmando que el proceso de inicialización automático funcionó a la perfección. (el proceso para conectarlo con DBeaver se muestra en la sección 5.2).
+2. Ejecuta el comando de construcción y despliegue:
 
-![Imagen17](./imgs/j5.png)
+```bash
+docker-compose up --build -d
+```
 
-### 4.4 +++++++++++++++++++++++++++++++++++++++++++
+#### Análisis del Comando
 
+- `docker-compose up`: Lee el archivo `docker-compose.yml` e inicia los servicios que define.
+- `--build`: Le dice a Docker Compose que primero construya la imagen de la API desde su Dockerfile antes de iniciarla. Es crucial si has hecho cambios en el código de la API.
+- `-d` (detached): Ejecuta los contenedores en segundo plano, liberando tu terminal.
 
+#### ¿Qué sucede detrás de escena?
+
+1. Docker descarga la imagen de Oracle (`gvenzl/oracle-xe`) si no la tienes.
+2. Docker construye la imagen de tu API siguiendo los pasos del Dockerfile (instala npm, copia el código, etc.).
+3. Se crea una red virtual para que los contenedores puedan comunicarse por su nombre de servicio (por eso `db` funciona en la cadena de conexión).
+4. El contenedor `db` se inicia. El healthcheck en `docker-compose.yml` espera a que Oracle esté completamente listo antes de permitir que la API se inicie.
+5. Una vez Oracle está "saludable", el contenedor `api` se inicia, lee el archivo `.env` y establece la conexión con la base de datos.
+
+### Fase 4: Verificación y Conexión Post-despliegue
+
+¿Cómo sabemos si todo ha funcionado?
+
+#### 4.1. Verificación con Docker
+
+##### Listar Contenedores en Ejecución
+
+```bash
+docker-compose ps
+```
+
+Deberías ver una tabla con los servicios `db` y `api`, ambos con el estado `Up` o `running`.
+
+##### Revisar los Logs (Registros)
+
+**Para la Base de Datos:**
+
+```bash
+docker-compose logs db
+```
+
+Busca mensajes que indiquen que la base de datos está lista (`DATABASE IS READY TO USE!`) y que los scripts de inicialización se ejecutaron.
+
+**Para la API:**
+
+```bash
+docker-compose logs api
+```
+
+Deberías ver los mensajes de tu `index.js`: `Pool de conexiones a Oracle creado exitosamente.` y `Servidor API corriendo en http://localhost:3000`.
+
+#### 4.2. Conexión Final con DBeaver
+
+Esta es la prueba de fuego que confirma que tu `ddl.sql` funcionó.
+
+1. Abre DBeaver y haz clic en **Nueva Conexión**.
+2. Selecciona **Oracle**.
+3. Rellena los campos de la pestaña "Principal":
+   - **Host**: `localhost`
+   - **Puerto**: `1521`
+   - **Conexión**: Asegúrate de seleccionar **Service Name** (y no SID).
+   - **Service Name**: `XE`
+4. **Autenticación**:
+   - **Usuario**: `API_USER`
+   - **Contraseña**: La contraseña que estableciste en los archivos de configuración (`tu_password_seguro`).
+5. Haz clic en **Probar Conexión...**. DBeaver podría solicitar descargar los drivers JDBC de Oracle. Permítelo.
+6. Si la prueba es exitosa, haz clic en **Finalizar**.
+
+**Resultado Esperado**: Al conectarte y expandir el árbol de la base de datos, deberías ver inmediatamente todas tus tablas (`CENTRO`, `ESCUELA`, `REGISTRO`, etc.) bajo el esquema de `API_USER`. Si las ves, ¡has triunfado! Tu entorno está 100% operativo.
 
 ## 5. Guía DBeaver
 
