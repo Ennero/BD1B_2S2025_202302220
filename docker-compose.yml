@@ -10,6 +10,14 @@ services:
     volumes:
       - ./db/init-db.d:/container-entrypoint-initdb.d
 
+    # Define cómo Docker debe comprobar si la base de datos está lista.
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 2m
+
   api:
     container_name: node-api
     # Construye la imagen del API usando el Dockerfile en la carpeta ./api
