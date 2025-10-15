@@ -42,8 +42,15 @@
       - [6.3.1. Patrón de Implementación](#631-patrón-de-implementación)
       - [6.3.2. Lógica de Negocio y Validaciones](#632-lógica-de-negocio-y-validaciones)
       - [6.3.3. Implementación de Eliminación en Cascada](#633-implementación-de-eliminación-en-cascada)
-  - [7. Uso de Endpoints](#7-uso-de-endpoints)
-  - [8. Capturas de evidencias](#8-capturas-de-evidencias)
+  - [7. Pruebas con DBeaver](#7-pruebas-con-dbeaver)
+    - [7.1. Datos de prueba Insertados](#71-datos-de-prueba-insertados)
+    - [7.2. Pruebas Diredtas con SQL](#72-pruebas-diredtas-con-sql)
+      - [7.2.1. Consulta 1: Verificación Básica](#721-consulta-1-verificación-básica)
+      - [7.2.2. Consulta 2: Verificación de Relaciones Simples (JOIN)](#722-consulta-2-verificación-de-relaciones-simples-join)
+      - [7.2.3. Consulta 3: Siguiendo la Pista de un Registro](#723-consulta-3-siguiendo-la-pista-de-un-registro)
+      - [7.2.4. Consulta 4: Detalle de un Examen](#724-consulta-4-detalle-de-un-examen)
+  - [8. Uso de Endpoints](#8-uso-de-endpoints)
+  - [9. Capturas de evidencias](#9-capturas-de-evidencias)
 
 
 
@@ -376,10 +383,206 @@ Para mejorar la integridad y la lógica de negocio, se decidió modificar el com
 Este cambio asegura que la lógica de negocio sea consistente y esté centralizada en la capa de datos, que es la más adecuada para manejar este tipo de reglas de integridad.
 
 
-## 7. Uso de Endpoints
+## 7. Pruebas con DBeaver
+
+Aqui se realizaron una serie de consultas para verificar la integridad y conexión de los datos, primero directamente en la base de datos con DBeaver y luego a través de los endpoints correspondientes de la API (que se realizaría en el siguiente punto). 
+
+### 7.1. Datos de prueba Insertados
+
+```sql
+- ### 1. Inserción en tablas de catálogo (sin dependencias) ###
+INSERT INTO DEPARTAMENTO(ID_DEPARTAMENTO, NOMBRE, CODIGO) VALUES (1, 'Guatemala', 1);
+INSERT INTO DEPARTAMENTO(ID_DEPARTAMENTO, NOMBRE, CODIGO) VALUES (2, 'Escuintla', 5);
+INSERT INTO DEPARTAMENTO(ID_DEPARTAMENTO, NOMBRE, CODIGO) VALUES (3, 'Sacatepéquez', 3);
+
+INSERT INTO CENTRO(ID_CENTRO, NOMBRE) VALUES (10, 'Centro de Evaluación Zona 18');
+INSERT INTO CENTRO(ID_CENTRO, NOMBRE) VALUES (20, 'Maycom Escuintla');
+INSERT INTO CENTRO(ID_CENTRO, NOMBRE) VALUES (30, 'Centro de Evaluación Antigua');
+
+INSERT INTO ESCUELA(ID_ESCUELA, NOMBRE, DIRECCION, ACUERDO) VALUES (100, 'Escuela de Manejo "El Maestro"', 'Calle Falsa 123, Ciudad', 'AC-2023-001');
+INSERT INTO ESCUELA(ID_ESCUELA, NOMBRE, DIRECCION, ACUERDO) VALUES (200, 'Academia "Rápido y Seguro"', 'Avenida Siempre Viva 742, Escuintla', 'AC-2022-085');
+INSERT INTO ESCUELA(ID_ESCUELA, NOMBRE, DIRECCION, ACUERDO) VALUES (300, 'Academia de Pilotos San Cristóbal', '4ta Calle 1-20, Antigua', 'AC-2024-030');
+
+INSERT INTO PREG(ID_PREG, PREG_TEXTO, RES, RES1, RES2, RES3, RES4) VALUES (1, '¿Qué significa una línea continua en el pavimento?', 'No rebasar', 'No rebasar', 'Rebasar con precaución', 'Zona escolar', 'Curva peligrosa');
+INSERT INTO PREG(ID_PREG, PREG_TEXTO, RES, RES1, RES2, RES3, RES4) VALUES (2, '¿Cuál es la velocidad máxima en una zona urbana?', '50 km/h', '80 km/h', '50 km/h', '60 km/h', 'No hay límite');
+INSERT INTO PREG(ID_PREG, PREG_TEXTO, RES, RES1, RES2, RES3, RES4) VALUES (3, 'La luz roja del semáforo indica:', 'Alto total', 'Reducir velocidad', 'Alto total', 'Pasar si no vienen carros', 'Ceder el paso');
+
+INSERT INTO PREG_PRACT(ID_PREG_PRACT, PREG_TEXTO, PUNTEO) VALUES (101, 'Realizar estacionamiento en paralelo.', 25);
+INSERT INTO PREG_PRACT(ID_PREG_PRACT, PREG_TEXTO, PUNTEO) VALUES (102, 'Zigzag entre conos sin derribar ninguno.', 30);
+INSERT INTO PREG_PRACT(ID_PREG_PRACT, PREG_TEXTO, PUNTEO) VALUES (103, 'Arranque en pendiente.', 15);
+
+INSERT INTO CORRELATIVO(ID_CORRELATIVO, FECHA, NO_EXAMEN) VALUES (1, TO_DATE('2025-10-15', 'YYYY-MM-DD'), 1);
+INSERT INTO CORRELATIVO(ID_CORRELATIVO, FECHA, NO_EXAMEN) VALUES (2, TO_DATE('2025-10-16', 'YYYY-MM-DD'), 1);
+
+-- ### 2. Inserción en tablas con dependencias ###
+INSERT INTO MUNICIPIO(ID_MUNICIPIO, NOMBRE, CODIGO, DEPARTAMENTO_ID_DEPARTAMENTO) VALUES (101, 'Guatemala', 1, 1);
+INSERT INTO MUNICIPIO(ID_MUNICIPIO, NOMBRE, CODIGO, DEPARTAMENTO_ID_DEPARTAMENTO) VALUES (108, 'Villa Nueva', 8, 1);
+INSERT INTO MUNICIPIO(ID_MUNICIPIO, NOMBRE, CODIGO, DEPARTAMENTO_ID_DEPARTAMENTO) VALUES (501, 'Escuintla', 1, 2);
+INSERT INTO MUNICIPIO(ID_MUNICIPIO, NOMBRE, CODIGO, DEPARTAMENTO_ID_DEPARTAMENTO) VALUES (301, 'Antigua Guatemala', 1, 3);
+
+INSERT INTO UBICACION(ESCUELA_ID_ESCUELA, CENTRO_ID_CENTRO) VALUES (100, 10);
+INSERT INTO UBICACION(ESCUELA_ID_ESCUELA, CENTRO_ID_CENTRO) VALUES (200, 10); -- Escuela 200 puede examinar en Centro 10
+INSERT INTO UBICACION(ESCUELA_ID_ESCUELA, CENTRO_ID_CENTRO) VALUES (200, 20); -- y también en Centro 20
+INSERT INTO UBICACION(ESCUELA_ID_ESCUELA, CENTRO_ID_CENTRO) VALUES (300, 30);
+
+-- ### 3. Inserción de registros de personas y sus exámenes ###
+-- Persona 1
+INSERT INTO REGISTRO(ID_REGISTRO, FECHA, TIPO_TRAMITE, TIPO_LICENCIA, NOMBRE_COMPLETO, GENERO, MUNICIPIO_ID_MUNICIPIO, UBICACION_ESCUELA_ID, UBICACION_CENTRO_ID) VALUES (1, TO_DATE('2025-10-15', 'YYYY-MM-DD'), 'Primera Licencia', 'C', 'Juan Carlos Pérez Gómez', 'M', 108, 100, 10);
+INSERT INTO EXAMEN(ID_EXAMEN, REGISTRO_ID_REGISTRO, CORRELATIVO_ID_CORRELATIVO) VALUES (1001, 1, 1);
+
+-- Persona 2
+INSERT INTO REGISTRO(ID_REGISTRO, FECHA, TIPO_TRAMITE, TIPO_LICENCIA, NOMBRE_COMPLETO, GENERO, MUNICIPIO_ID_MUNICIPIO, UBICACION_ESCUELA_ID, UBICACION_CENTRO_ID) VALUES (2, TO_DATE('2025-10-16', 'YYYY-MM-DD'), 'Renovación', 'B', 'Ana María López Solorzano', 'F', 301, 300, 30);
+INSERT INTO EXAMEN(ID_EXAMEN, REGISTRO_ID_REGISTRO, CORRELATIVO_ID_CORRELATIVO) VALUES (1002, 2, 2);
+
+-- ### 4. Inserción de respuestas para cada examen ###
+-- Respuestas para el examen de Juan Pérez (ID 1001)
+INSERT INTO RES_USU(ID_RES_USU, RES, PREG_ID_PREG, EXAMEN_ID_EXAMEN) VALUES (1, 'No rebasar', 1, 1001); -- Correcta
+INSERT INTO RES_USU(ID_RES_USU, RES, PREG_ID_PREG, EXAMEN_ID_EXAMEN) VALUES (2, '80 km/h', 2, 1001); -- Incorrecta
+INSERT INTO RES_PRACT_USU(ID_RES_PRACT, NOTA, PREG_PRACT_ID_PREG_PRACT, EXAMEN_ID_EXAMEN) VALUES (1, 20, 101, 1001);
+INSERT INTO RES_PRACT_USU(ID_RES_PRACT, NOTA, PREG_PRACT_ID_PREG_PRACT, EXAMEN_ID_EXAMEN) VALUES (2, 25, 102, 1001);
+
+-- Respuestas para el examen de Ana López (ID 1002)
+INSERT INTO RES_USU(ID_RES_USU, RES, PREG_ID_PREG, EXAMEN_ID_EXAMEN) VALUES (3, '50 km/h', 2, 1002); -- Correcta
+INSERT INTO RES_USU(ID_RES_USU, RES, PREG_ID_PREG, EXAMEN_ID_EXAMEN) VALUES (4, 'Alto total', 3, 1002); -- Correcta
+INSERT INTO RES_PRACT_USU(ID_RES_PRACT, NOTA, PREG_PRACT_ID_PREG_PRACT, EXAMEN_ID_EXAMEN) VALUES (3, 15, 103, 1002);
+```
+
+### 7.2. Pruebas Diredtas con SQL
+
+#### 7.2.1. Consulta 1: Verificación Básica
+
+**Objetivo:** ¿Están los datos de las tablas principales cargados?
+
+**Acción:** Revisa el contenido completo de una tabla de catálogo simple.
+
+```sql
+-- ¿Están todos los departamentos que inserté?
+SELECT * FROM DEPARTAMENTO ORDER BY ID_DEPARTAMENTO;
+
+-- ¿Están todas las escuelas?
+SELECT * FROM ESCUELA ORDER BY ID_ESCUELA;
+```
+
+Los resultados fueron los siguientes respectivamente:
+
+![Prueba1](./imgs/p1.png)
+
+![Prueba2](./imgs/p2.png)
+
+#### 7.2.2. Consulta 2: Verificación de Relaciones Simples (JOIN)
+
+**Objetivo:** ¿Se conecta correctamente un municipio con su departamento?
+
+**Acción:** Unimos MUNICIPIO y DEPARTAMENTO para mostrar información combinada.
+
+```sql
+-- Muestra cada municipio junto al nombre de su departamento
+SELECT
+    m.ID_MUNICIPIO,
+    m.NOMBRE AS NOMBRE_MUNICIPIO,
+    d.NOMBRE AS NOMBRE_DEPARTAMENTO
+FROM
+    MUNICIPIO m
+JOIN
+    DEPARTAMENTO d ON m.DEPARTAMENTO_ID_DEPARTAMENTO = d.ID_DEPARTAMENTO
+ORDER BY
+    d.NOMBRE, m.NOMBRE;
+```
+
+El resultado fue el siguiente:
+![Prueba3](./imgs/p3.png)
+
+#### 7.2.3. Consulta 3: Siguiendo la Pista de un Registro
+
+**Objetivo:** Ver la "historia completa" de una persona registrada.
+
+**Acción:** Unimos múltiples tablas para obtener una vista 360° de un registro específico (en este caso, el de ID_REGISTRO = 1).
+
+```sql
+-- Muestra todos los detalles de la persona con ID 1, incluyendo su ubicación y datos geográficos.
+SELECT
+    r.ID_REGISTRO,
+    r.NOMBRE_COMPLETO,
+    r.TIPO_LICENCIA,
+    r.FECHA AS FECHA_REGISTRO,
+    esc.NOMBRE AS NOMBRE_ESCUELA,
+    cen.NOMBRE AS NOMBRE_CENTRO,
+    mun.NOMBRE AS MUNICIPIO_RESIDENCIA,
+    dep.NOMBRE AS DEPARTAMENTO_RESIDENCIA
+FROM
+    REGISTRO r
+JOIN
+    UBICACION u ON r.UBICACION_ESCUELA_ID = u.ESCUELA_ID_ESCUELA AND r.UBICACION_CENTRO_ID = u.CENTRO_ID_CENTRO
+JOIN
+    ESCUELA esc ON u.ESCUELA_ID_ESCUELA = esc.ID_ESCUELA
+JOIN
+    CENTRO cen ON u.CENTRO_ID_CENTRO = cen.ID_CENTRO
+JOIN
+    MUNICIPIO mun ON r.MUNICIPIO_ID_MUNICIPIO = mun.ID_MUNICIPIO
+JOIN
+    DEPARTAMENTO dep ON mun.DEPARTAMENTO_ID_DEPARTAMENTO = dep.ID_DEPARTAMENTO
+WHERE
+    r.ID_REGISTRO = 1;
+```
+
+El resultado fue el siguiente:
+
+![Prueba4](./imgs/p4.png)
+
+#### 7.2.4. Consulta 4: Detalle de un Examen
+
+**Objetivo:** Ver todas las respuestas teóricas y prácticas de un examen específico.
+
+**Acción:** Unimos el examen con sus respuestas teóricas y prácticas.
+
+```sql
+-- Muestra el desglose completo del examen con ID 1001
+-- Respuestas teóricas
+SELECT
+    ex.ID_EXAMEN,
+    reg.NOMBRE_COMPLETO,
+    p.PREG_TEXTO,
+    ru.RES AS RESPUESTA_USUARIO,
+    p.RES AS RESPUESTA_CORRECTA
+FROM
+    RES_USU ru
+JOIN
+    EXAMEN ex ON ru.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN
+JOIN
+    PREG p ON ru.PREG_ID_PREG = p.ID_PREG
+JOIN
+    REGISTRO reg ON ex.REGISTRO_ID_REGISTRO = reg.ID_REGISTRO
+WHERE
+    ex.ID_EXAMEN = 1001;
+
+-- Respuestas prácticas
+SELECT
+    ex.ID_EXAMEN,
+    reg.NOMBRE_COMPLETO,
+    pp.PREG_TEXTO,
+    rpu.NOTA,
+    pp.PUNTEO AS PUNTEO_MAXIMO
+FROM
+    RES_PRACT_USU rpu
+JOIN
+    EXAMEN ex ON rpu.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN
+JOIN
+    PREG_PRACT pp ON rpu.PREG_PRACT_ID_PREG_PRACT = pp.ID_PREG_PRACT
+JOIN
+    REGISTRO reg ON ex.REGISTRO_ID_REGISTRO = reg.ID_REGISTRO
+WHERE
+    ex.ID_EXAMEN = 1001;
+```
+Los resultados fueron los siguientes, respectivamente:
+
+![Prueba5](./imgs/p5.png)
+
+![Prueba6](./imgs/p6.png)
+
+## 8. Uso de Endpoints
 
 
-## 8. Capturas de evidencias
+## 9. Capturas de evidencias
 
 
 
