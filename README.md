@@ -2138,16 +2138,150 @@ Cuerpo de la Respuesta (Body): Deberías recibir un array JSON con los 2 registr
 
 #### 8.2.9.2. Prueba de GET con ID
 
+**Endpoint:** /api/registros/:id
+
+**URL Completa:** http://localhost:3000/api/registros/1
+
+**Acción:** Envía la petición para obtener el registro con ID = 1.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un único objeto JSON.
+
+```json
+{
+    "ID_REGISTRO": 1,
+    "FECHA": "2025-10-15T06:00:00.000Z",
+    "TIPO_TRAMITE": "Primera Licencia",
+    "TIPO_LICENCIA": "C",
+    "NOMBRE_COMPLETO": "Juan Carlos Pérez Gómez",
+    "GENERO": "M",
+    "MUNICIPIO_ID_MUNICIPIO": 108,
+    "UBICACION_ESCUELA_ID": 100,
+    "UBICACION_CENTRO_ID": 10
+}
+```
+
+![Prueba6](./imgs/regi2.png)
+
 #### 8.2.9.3. Prueba de POST
 
+**Endpoint:** /api/registros
+
+**URL Completa:** http://localhost:3000/api/registros
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usamos un ID nuevo y llaves foráneas que sí existen):
+
+```json
+{
+    "id_registro": 3,
+    "fecha": "2025-10-18T06:00:00.000Z",
+    "tipo_tramite": "Traspaso",
+    "tipo_licencia": "A",
+    "nombre_completo": "Pedro Antonio Páramo",
+    "genero": "M",
+    "municipio_id_municipio": 501,
+    "ubicacion_escuela_id": 200,
+    "ubicacion_centro_id": 20
+}
+```
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+201 Created
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Registro created successfully",
+    "data": {
+        "id_registro": 3,
+        "fecha": "2025-10-18T06:00:00.000Z",
+        "tipo_tramite": "Traspaso",
+        "tipo_licencia": "A",
+        "nombre_completo": "Pedro Antonio Páramo",
+        "genero": "M",
+        "municipio_id_municipio": 501,
+        "ubicacion_escuela_id": 200,
+        "ubicacion_centro_id": 20
+    }
+}
+```
+
+![Prueba6](./imgs/regi3.png)
+
 #### 8.2.9.4. Prueba de PUT
 
-##### Resultado Esperado:
-#### 8.2.9.5. Prueba de DELETE
+**Endpoint:** /api/registros/:id
+
+**URL Completa:** http://localhost:3000/api/registros/3
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para actualizar el tipo_tramite:
+```json
+{
+    "fecha": "2025-10-18T06:00:00.000Z",
+    "tipo_tramite": "Traspaso (actualizado)",
+    "tipo_licencia": "A",
+    "nombre_completo": "Pedro Antonio Páramo",
+    "genero": "M",
+    "municipio_id_municipio": 501,
+    "ubicacion_escuela_id": 200,
+    "ubicacion_centro_id": 20
+}
+```
 
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+
+```json
+{
+    "message": "Registro updated successfully."
+}
+```
+
+![Prueba6](./imgs/regi4.png)
+
+#### 8.2.9.5. Prueba de DELETE
+
+**Endpoint:** /api/registros/:id
+
+**URL Completa:** http://localhost:3000/api/registros/3
+
+**Acción:** Enviar la petición.
+
+##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Registro deleted successfully."
+}
+```
+
+![Prueba6](./imgs/regi5.png)
 
 ### 8.2.10. Endpoints de EXAMEN
 
