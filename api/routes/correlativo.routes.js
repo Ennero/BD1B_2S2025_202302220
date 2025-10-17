@@ -63,10 +63,15 @@ router.post('/', async (req, res) => {
   let connection;
   try {
     connection = await oracledb.getConnection();
-    // El driver de node-oracledb puede manejar strings de fecha si están en un formato estándar
+    
+    // *** CORRECCIÓN CLAVE ***
+    // Convertimos la cadena de texto ISO 8601 a un objeto Date de JavaScript.
+    // El driver de Oracle sabe cómo manejar este objeto correctamente.
+    const fechaAsDate = new Date(fecha);
+
     const result = await connection.execute(
       `INSERT INTO CORRELATIVO (ID_CORRELATIVO, FECHA, NO_EXAMEN) VALUES (:id_correlativo, :fecha, :no_examen)`,
-      { id_correlativo, fecha, no_examen },
+      { id_correlativo, fecha: fechaAsDate, no_examen }, // <- Usamos el objeto Date
       { autoCommit: true }
     );
     res.status(201).json({ message: 'Correlativo creado exitosamente', data: { id_correlativo, fecha, no_examen } });
@@ -74,6 +79,10 @@ router.post('/', async (req, res) => {
     console.error(err);
     if (err.errorNum === 1) {
         return res.status(409).json({ message: 'Error: El ID del correlativo ya existe.' });
+    }
+    // Si el error es de formato de fecha, damos una respuesta más específica.
+    if (err.errorNum === 1861 || err.errorNum === 1843) {
+        return res.status(400).json({ message: 'Formato de fecha inválido. Use el formato ISO 8601 (YYYY-MM-DDTHH:mm:ss.sssZ).' });
     }
     res.status(500).json({ message: 'Error al crear el correlativo' });
   } finally {
@@ -99,9 +108,14 @@ router.put('/:id', async (req, res) => {
     let connection;
     try {
         connection = await oracledb.getConnection();
+
+        // *** CORRECCIÓN CLAVE ***
+        // Hacemos la misma conversión para la actualización.
+        const fechaAsDate = new Date(fecha);
+
         const result = await connection.execute(
             `UPDATE CORRELATIVO SET FECHA = :fecha, NO_EXAMEN = :no_examen WHERE ID_CORRELATIVO = :id`,
-            { fecha, no_examen, id },
+            { fecha: fechaAsDate, no_examen, id }, // <- Usamos el objeto Date
             { autoCommit: true }
         );
 
@@ -112,6 +126,10 @@ router.put('/:id', async (req, res) => {
 
     } catch (err) {
         console.error(err);
+        // Si el error es de formato de fecha, damos una respuesta más específica.
+        if (err.errorNum === 1861 || err.errorNum === 1843) {
+            return res.status(400).json({ message: 'Formato de fecha inválido. Use el formato ISO 8601 (YYYY-MM-DDTHH:mm:ss.sssZ).' });
+        }
         res.status(500).json({ message: 'Error al actualizar el correlativo.' });
     } finally {
         if (connection) {

@@ -752,38 +752,322 @@ Ahora bien, estos datos se restaurarán para cada enpoint que se fuere probando.
 
 #### 8.2.1.1. Prueba de GET 
 
-##### Resultado Esperado:
-#### 8.2.1.2. Prueba de GET con ID
+**Endpoint:** /api/centros
+
+**URL Completa:** http://localhost:3000/api/centros
+
+**Acción:** Envía la petición.
 
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un array JSON con los 3 centros que insertaste.
+
+```json
+[
+    {
+        "ID_CENTRO": 10,
+        "NOMBRE": "Centro de Evaluación Zona 18"
+    },
+    {
+        "ID_CENTRO": 20,
+        "NOMBRE": "Maycom Escuintla"
+    },
+    {
+        "ID_CENTRO": 30,
+        "NOMBRE": "Centro de Evaluación Antigua"
+    }
+]
+```
+![Prueba6](./imgs/cc1.png)
+
+#### 8.2.1.2. Prueba de GET con ID
+**Endpoint:** /api/centros/:id
+
+**URL Completa:** http://localhost:3000/api/centros/20
+
+**Acción:** Envía la petición para obtener el centro con ID = 20.
+
+##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un único objeto JSON.
+```json
+{
+    "ID_CENTRO": 20,
+    "NOMBRE": "Maycom Escuintla"
+}
+```
+
+![Prueba6](./imgs/cc2.png)
+
 #### 8.2.1.3. Prueba de POST
 
+Endpoint: /api/centros
+
+URL Completa: http://localhost:3000/api/centros
+
+Acción:
+
+Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente objeto:
+```json
+{
+    "id_centro": 40,
+    "nombre": "Centro de Evaluación Petapa"
+}
+```
+
+Y enviar la petición.
+
 ##### Resultado Esperado:
+
+Código de Estado:
+```json
+201 Created
+```
+
+Cuerpo de la Respuesta (Body):
+```json
+{
+    "message": "Centro creado exitosamente",
+    "data": {
+        "id_centro": 40,
+        "nombre": "Centro de Evaluación Petapa"
+    }
+}
+```
+
+![Prueba6](./imgs/cc3.png)
+
 #### 8.2.1.4. Prueba de PUT
 
-##### Resultado Esperado:
-#### 8.2.1.5. Prueba de DELETE
+**Endpoint:** /api/centros/:id
+
+**URL Completa:** http://localhost:3000/api/centros/40
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto:
+```json
+{
+    "nombre": "Centro de Evaluación Petapa (Reubicado)"
+}
+```
+
+Y enviar la petición.
+
 
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+
+```json
+{
+    "message": "Centro actualizado exitosamente."
+}
+```
+![Prueba6](./imgs/cc4.png)
+
+#### 8.2.1.5. Prueba de DELETE
+
+**Endpoint:** /api/centros/:id
+
+**URL Completa:** http://localhost:3000/api/centros/40
+
+**Acción:** Enviar la petición.
+
+##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Centro eliminado exitosamente."
+}
+```
+
+![Prueba6](./imgs/cc5.png)
+
 
 
 ### 8.2.2. Endpoints de CORRELATIVO
 
 #### 8.2.2.1. Prueba de GET 
 
+**Endpoint:** /api/correlativos
+
+**URL Completa:** http://localhost:3000/api/correlativos
+
+**Acción:** Envía la petición.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un array JSON con los 2 correlativos iniciales.
+```json
+[
+    {
+        "ID_CORRELATIVO": 1,
+        "FECHA": "2025-10-15T06:00:00.000Z",
+        "NO_EXAMEN": 1
+    },
+    {
+        "ID_CORRELATIVO": 2,
+        "FECHA": "2025-10-16T06:00:00.000Z",
+        "NO_EXAMEN": 1
+    }
+]
+```
+
+![Prueba6](./imgs/corre1.png)
+
 #### 8.2.2.2. Prueba de GET con ID
 
+**Endpoint:** /api/correlativos/:id
+
+**URL Completa:** http://localhost:3000/api/correlativos/2
+
+**Acción:** Envía la petición para obtener el correlativo con ID = 2.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un único objeto JSON.
+```json
+{
+    "ID_CORRELATIVO": 2,
+    "FECHA": "2025-10-16T06:00:00.000Z",
+    "NO_EXAMEN": 1
+}
+```
+
+![Prueba6](./imgs/corre2.png)
+
 #### 8.2.2.3. Prueba de POST
 
+**Endpoint:** /api/correlativos
+
+**URL Completa:** http://localhost:3000/api/correlativos
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente objeto (usamos un ID que no existe, como 3):
+```json
+{
+    "id_correlativo": 3,
+    "fecha": "2025-10-17T06:00:00.000Z",
+    "no_examen": 1
+}
+
+```
+
+Y enviar la petición.
+
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+201 Created
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+  "message": "Correlativo creado exitosamente",
+  "data": {
+    "id_correlativo": 3,
+    "fecha": "2025-10-17T06:00:00.000Z",
+    "no_examen": 1
+  }
+}
+```
+
+![Prueba6](./imgs/corre3.png)
+
 #### 8.2.2.4. Prueba de PUT
 
-##### Resultado Esperado:
-#### 8.2.2.5. Prueba de DELETE
+**Endpoint:** /api/correlativos/:id
+
+**URL Completa:** http://localhost:3000/api/correlativos/3
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para actualizar el no_examen:
+
+```json
+{
+    "fecha": "2025-10-17T06:00:00.000Z",
+    "no_examen": 2
+}
+```
+
+Y enviar la petición.
 
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Correlativo actualizado exitosamente."
+}
+```
+
+![Prueba6](./imgs/corre4.png)
+
+#### 8.2.2.5. Prueba de DELETE
+
+**Endpoint:** /api/correlativos/:id
+
+**URL Completa:** http://localhost:3000/api/correlativos/3
+
+**Acción:** Enviar la petición.
+
+##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Correlativo eliminado exitosamente."
+}
+```
+
+![Prueba6](./imgs/corre5.png)
 
 ### 8.2.3. Endpoints de DEPARTAMENTOS
 
@@ -1151,38 +1435,364 @@ Y se obtuvo el resultado correctamente:
 
 #### 8.2.5.1. Prueba de GET 
 
+**Endpoint:** /api/preguntas
+
+**URL Completa:** http://localhost:3000/api/preguntas
+
+**Acción:** Envía la petición.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un array JSON con las 2 preguntas teóricas iniciales.
+```json
+[
+    {
+        "ID_PREG": 1,
+        "PREG_TEXTO": "¿Qué significa una línea continua en el pavimento?",
+        "RES": "No rebasar",
+        "RES1": "No rebasar",
+        "RES2": "Rebasar con precaución",
+        "RES3": "Zona escolar",
+        "RES4": "Curva peligrosa"
+    },
+    {
+        "ID_PREG": 2,
+        "PREG_TEXTO": "¿Cuál es la velocidad máxima en una zona urbana?",
+        "RES": "50 km/h",
+        "RES1": "80 km/h",
+        "RES2": "50 km/h",
+        "RES3": "60 km/h",
+        "RES4": "No hay límite"
+    }
+]
+```
+
+![Prueba6](./imgs/preg1.png)
+
 #### 8.2.5.2. Prueba de GET con ID
 
+**Endpoint:** /api/preguntas/:id
+
+**URL Completa:** http://localhost:3000/api/preguntas/1
+
+**Acción:** Envía la petición para obtener la pregunta con ID = 1
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+
+```json
+200 OK
+```
+
+Cuerpo de la Respuesta (Body): Deberías recibir un único objeto JSON.
+```json
+{
+    "ID_PREG": 1,
+    "PREG_TEXTO": "¿Qué significa una línea continua en el pavimento?",
+    "RES": "No rebasar",
+    "RES1": "No rebasar",
+    "RES2": "Rebasar con precaución",
+    "RES3": "Zona escolar",
+    "RES4": "Curva peligrosa"
+}
+```
+
+![Prueba6](./imgs/preg2.png)
+
 #### 8.2.5.3. Prueba de POST
 
+**Endpoint:** /api/preguntas
+
+**URL Completa:** http://localhost:3000/api/preguntas
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente objeto:
+```json
+{
+    "id_preg": 4,
+    "preg_texto": "¿Qué luz del semáforo indica que debe detenerse?",
+    "res": "Roja",
+    "res1": "Verde",
+    "res2": "Amarilla",
+    "res3": "Roja",
+    "res4": "Azul"
+}
+```
+
+Y enviar la petición.
+
+
 ##### Resultado Esperado:
+
+
+**Código de Estado:**
+```json
+201 Created
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Pregunta creada exitosamente",
+    "data": {
+        "id_preg": 4,
+        "preg_texto": "¿Qué luz del semáforo indica que debe detenerse?",
+        "res": "Roja",
+        "res1": "Verde",
+        "res2": "Amarilla",
+        "res3": "Roja",
+        "res4": "Azul"
+    }
+}
+```
+
+![Prueba6](./imgs/preg3.png)
+
 #### 8.2.5.4. Prueba de PUT
 
+**Endpoint:** /api/preguntas/:id
+
+**URL Completa:** http://localhost:3000/api/preguntas/4
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto:
+```json
+{
+    "preg_texto": "¿Qué luz del semáforo indica 'ALTO'?",
+    "res": "Roja",
+    "res1": "Verde",
+    "res2": "Amarilla",
+    "res3": "Roja",
+    "res4": null
+}
+```
+
+Y enviar la petición.
+
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+
+**Cuerpo de la Respuesta (Body):**
+
+```json
+{
+    "message": "Pregunta actualizada exitosamente."
+}
+```
+
+![Prueba6](./imgs/preg4.png)
+
 #### 8.2.5.5. Prueba de DELETE
 
+**Endpoint:** /api/preguntas/:id
+
+**URL Completa:** http://localhost:3000/api/preguntas/3
+
+**Acción:** Enviar la petición.
+
+
 ##### Resultado Esperado:
 
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+
+```json
+{
+    "message": "Pregunta eliminada exitosamente."
+}
+```
+
+![Prueba6](./imgs/preg5.png)
 
 ### 8.2.6. Endpoints de PREG_PRACT
 
 #### 8.2.6.1. Prueba de GET 
 
+**Endpoint:** /api/preguntas-practicas
+
+**URL Completa:** http://localhost:3000/api/preguntas-practicas
+
+**Acción:** Envía la petición.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un array JSON con las 3 preguntas prácticas iniciales.
+```json
+[
+    {
+        "ID_PREG_PRACT": 101,
+        "PREG_TEXTO": "Realizar estacionamiento en paralelo.",
+        "PUNTEO": 25
+    },
+    {
+        "ID_PREG_PRACT": 102,
+        "PREG_TEXTO": "Zigzag entre conos sin derribar ninguno.",
+        "PUNTEO": 30
+    },
+    {
+        "ID_PREG_PRACT": 103,
+        "PREG_TEXTO": "Arranque en pendiente.",
+        "PUNTEO": 15
+    }
+]
+```
+
+![Prueba6](./imgs/ppp1.png)
+
 #### 8.2.6.2. Prueba de GET con ID
 
+**Endpoint:** /api/preguntas-practicas/:id
+
+**URL Completa:** http://localhost:3000/api/preguntas-practicas/102
+
+**Acción:** Envía la petición para obtener la pregunta práctica con ID = 102.
+
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un único objeto JSON.
+```json
+{
+    "ID_PREG_PRACT": 102,
+    "PREG_TEXTO": "Zigzag entre conos sin derribar ninguno.",
+    "PUNTEO": 30
+}
+```
+
+![Prueba6](./imgs/ppp2.png)
+
 #### 8.2.6.3. Prueba de POST
 
+**Endpoint:** /api/preguntas-practicas
+
+**URL Completa:** http://localhost:3000/api/preguntas-practicas
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente objeto (usamos un ID que no existe, como 104):
+```json
+{
+    "id_preg_pract": 104,
+    "preg_texto": "Respetar señal de ALTO por 3 segundos.",
+    "punteo": 10
+}
+```
+
+Y enviar la petición.
+
 ##### Resultado Esperado:
+
+
+**Código de Estado:**
+```json
+201 Created
+```
+
+**Cuerpo de la Respuesta (Body):**
+
+```json
+{
+    "message": "Pregunta práctica creada exitosamente",
+    "data": {
+        "id_preg_pract": 104,
+        "preg_texto": "Respetar señal de ALTO por 3 segundos.",
+        "punteo": 10
+    }
+}
+```
+
+![Prueba6](./imgs/ppp3.png)
+
 #### 8.2.6.4. Prueba de PUT
 
-##### Resultado Esperado:
-#### 8.2.6.5. Prueba de DELETE
+**Endpoint:** /api/preguntas-practicas/:id
+
+**URL Completa:** http://localhost:3000/api/preguntas-practicas/104
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto:
+
+```json
+{
+    "preg_texto": "Respetar señal de ALTO por un mínimo de 3 segundos.",
+    "punteo": 15
+}
+```
+
+Y enviar la petición.
+
 
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Pregunta práctica actualizada exitosamente."
+}
+```
+
+![Prueba6](./imgs/ppp4.png)
+
+#### 8.2.6.5. Prueba de DELETE
+
+**Endpoint:** /api/preguntas-practicas/:id
+
+**URL Completa:** http://localhost:3000/api/preguntas-practicas/104
+
+**Acción:** Enviar la petición.
+
+
+##### Resultado Esperado:
+
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Pregunta práctica eliminada exitosamente."
+}
+```
+
+![Prueba6](./imgs/ppp5.png)
+
 
 
 ### 8.2.7. Endpoints de MUNICIPIO
@@ -1353,26 +1963,179 @@ Efectivamente funcionó:
 
 #### 8.2.8.1. Prueba de GET 
 
+**Endpoint:** /api/ubicaciones
+
+**URL Completa:** http://localhost:3000/api/ubicaciones
+
+**Acción:** Envía la petición.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un array JSON con las 3 relaciones iniciales.
+
+```json
+[
+    {
+        "ESCUELA_ID_ESCUELA": 100,
+        "CENTRO_ID_CENTRO": 10
+    },
+    {
+        "ESCUELA_ID_ESCUELA": 200,
+        "CENTRO_ID_CENTRO": 10
+    },
+    {
+        "ESCUELA_ID_ESCUELA": 200,
+        "CENTRO_ID_CENTRO": 20
+    }
+]
+```
+
+![Prueba6](./imgs/ub1.png)
+
 #### 8.2.8.2. Prueba de GET con ID
 
-##### Resultado Esperado:
-#### 8.2.8.3. Prueba de POST
+**Endpoint:** /api/ubicaciones/escuela/:escuelaId/centro/:centroId
+
+**URL Completa:** http://localhost:3000/api/ubicaciones/escuela/200/centro/10
+
+**Acción:** Envía la petición para obtener la relación específica entre la escuela 200 y el centro 10.
 
 ##### Resultado Esperado:
+
+Código de Estado:
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un único objeto JSON.
+```json
+{
+    "ESCUELA_ID_ESCUELA": 200,
+    "CENTRO_ID_CENTRO": 10
+}
+```
+
+![Prueba6](./imgs/ub2.png)
+
+#### 8.2.8.3. Prueba de POST
+
+**Endpoint:** /api/ubicaciones
+
+**URL Completa:** http://localhost:3000/api/ubicaciones
+
+**Acción:** Ir a Body > raw > JSON y pegar el siguiente objeto para crear una nueva relación válida.
+
+```json
+{
+    "escuela_id_escuela": 100,
+    "centro_id_centro": 20
+}
+```
+
+##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+201 Created
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Ubicación creada exitosamente",
+    "data": {
+        "escuela_id_escuela": 100,
+        "centro_id_centro": 20
+    }
+}
+```
+
+![Prueba6](./imgs/ub3.png)
+
 #### 8.2.8.4. Prueba de PUT
+
+Al ser una tabla intermedia, no existe el PUT para esta tabla.
+
 
 ##### Resultado Esperado:
 #### 8.2.8.5. Prueba de DELETE
 
+**Endpoint:** /api/ubicaciones/escuela/:escuelaId/centro/:centroId
+
+**URL Completa:** http://localhost:3000/api/ubicaciones/escuela/100/centro/20
+
+**Acción:** Envía la petición para eliminar la relación que creamos en la prueba 3.1.
+
+
 ##### Resultado Esperado:
 
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Ubicación eliminada exitosamente."
+}
+```
+
+![Prueba6](./imgs/ub4.png)
 
 ### 8.2.9. Endpoints de REGISTRO
 
 #### 8.2.9.1. Prueba de GET 
 
+**Endpoint:** /api/registros
+
+**URL Completa:** http://localhost:3000/api/registros
+
+**Acción:** Envía la petición.
+
 ##### Resultado Esperado:
+
+Código de Estado:
+```json
+200 OK
+```
+
+Cuerpo de la Respuesta (Body): Deberías recibir un array JSON con los 2 registros iniciales.
+
+```json
+[
+    {
+        "ID_REGISTRO": 1,
+        "FECHA": "2025-10-15T06:00:00.000Z",
+        "TIPO_TRAMITE": "Primera Licencia",
+        "TIPO_LICENCIA": "C",
+        "NOMBRE_COMPLETO": "Juan Carlos Pérez Gómez",
+        "GENERO": "M",
+        "MUNICIPIO_ID_MUNICIPIO": 108,
+        "UBICACION_ESCUELA_ID": 100,
+        "UBICACION_CENTRO_ID": 10
+    },
+    {
+        "ID_REGISTRO": 2,
+        "FECHA": "2025-10-16T06:00:00.000Z",
+        "TIPO_TRAMITE": "Renovación",
+        "TIPO_LICENCIA": "B",
+        "NOMBRE_COMPLETO": "Ana María López Solorzano",
+        "GENERO": "F",
+        "MUNICIPIO_ID_MUNICIPIO": 301,
+        "UBICACION_ESCUELA_ID": 300,
+        "UBICACION_CENTRO_ID": 30
+    }
+]
+```
+
+![Prueba6](./imgs/regi1.png)
+
 #### 8.2.9.2. Prueba de GET con ID
 
 ##### Resultado Esperado:
