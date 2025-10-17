@@ -189,6 +189,19 @@
         - [8.2.13.2 Consulta 2 - Ranking de evaluadores por resultado final](#82132-consulta-2---ranking-de-evaluadores-por-resultado-final)
         - [8.2.13.3 Consulta 3 - La pregunta con menor aciertos](#82133-consulta-3---la-pregunta-con-menor-aciertos)
   - [9. Evidencias de base de datos funcional con Postman](#9-evidencias-de-base-de-datos-funcional-con-postman)
+  - [10. Colección de pruebas de Postman](#10-colección-de-pruebas-de-postman)
+    - [10.1. Centro](#101-centro)
+    - [10.2. Correlativo](#102-correlativo)
+    - [10.3. Departamento](#103-departamento)
+    - [10.4. Escuela](#104-escuela)
+    - [10.5. Examen](#105-examen)
+    - [10.6. Municipio](#106-municipio)
+    - [10.7. Preg](#107-preg)
+    - [10.8. Preg\_pract](#108-preg_pract)
+    - [10.9. Registro](#109-registro)
+    - [10.10. Rest\_Pract\_Usu](#1010-rest_pract_usu)
+    - [10.11. Res\_Usu](#1011-res_usu)
+    - [10.12. Ubicacion](#1012-ubicacion)
 
 
 
@@ -2885,3 +2898,1625 @@ http://localhost:3000/api/consultas/pregunta-mas-dificil
 ![Postman57](./imgs/poti57.png)
 ![Postman58](./imgs/poti58.png)
 ![Postman59](./imgs/poti59.png)
+
+## 10. Colección de pruebas de Postman
+
+### 10.1. Centro
+
+```json
+{
+	"info": {
+		"_postman_id": "afee5412-99bc-4628-9804-80663b34dc27",
+		"name": "CENTRO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/centros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"centros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/centros/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"centros",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_centro\": 40,\r\n    \"nombre\": \"Centro de Evaluación Petapa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/centros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"centros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Centro de Evaluación Petapa (Reubicado)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/centros/40",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"centros",
+						"40"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/centros/40",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"centros",
+						"40"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.2. Correlativo
+
+```json
+{
+	"info": {
+		"_postman_id": "11a49df6-3905-4e80-b559-be8c216032eb",
+		"name": "CORRELATIVO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/correlativos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"correlativos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/correlativos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"correlativos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_correlativo\": 3,\r\n    \"fecha\": \"2025-10-17T06:00:00.000Z\",\r\n    \"no_examen\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/correlativos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"correlativos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fecha\": \"2025-10-17T06:00:00.000Z\",\r\n    \"no_examen\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/correlativos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"correlativos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/correlativos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"correlativos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.3. Departamento
+
+```json
+{
+	"info": {
+		"_postman_id": "67f92fbc-50fe-4914-a199-dbb3c1a180d8",
+		"name": "DEPARTAMENTO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/departamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"departamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/departamentos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"departamentos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_departamento\": 4,\r\n    \"nombre\": \"El Progreso\",\r\n    \"codigo\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/departamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"departamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"El Progreso (editado)\",\r\n    \"codigo\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/departamentos/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"departamentos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/departamentos/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"departamentos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.4. Escuela
+
+```json
+{
+	"info": {
+		"_postman_id": "52531a1e-8095-48ac-8411-33855d16de12",
+		"name": "ESCUELA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas/200",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas",
+						"200"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_escuela\": 400,\r\n    \"nombre\": \"Escuela Vial de Guatemala\",\r\n    \"direccion\": \"Zona 10, Edificio Test\",\r\n    \"acuerdo\": \"AC-2025-001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Escuela Vial de Guatemala (Sede Central)\",\r\n    \"direccion\": \"Zona 10, Edificio Test, Nivel 2\",\r\n    \"acuerdo\": \"AC-2025-001-MOD\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas/400",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas",
+						"400"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas/400",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas",
+						"400"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.5. Examen
+
+```json
+{
+	"info": {
+		"_postman_id": "52531a1e-8095-48ac-8411-33855d16de12",
+		"name": "ESCUELA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas/200",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas",
+						"200"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_escuela\": 400,\r\n    \"nombre\": \"Escuela Vial de Guatemala\",\r\n    \"direccion\": \"Zona 10, Edificio Test\",\r\n    \"acuerdo\": \"AC-2025-001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Escuela Vial de Guatemala (Sede Central)\",\r\n    \"direccion\": \"Zona 10, Edificio Test, Nivel 2\",\r\n    \"acuerdo\": \"AC-2025-001-MOD\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas/400",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas",
+						"400"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/escuelas/400",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"escuelas",
+						"400"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.6. Municipio
+
+```json
+{
+	"info": {
+		"_postman_id": "ce277437-c562-4a57-ae18-281c2feff349",
+		"name": "MUNICIPIO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/municipios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"municipios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/municipios/108",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"municipios",
+						"108"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_municipio\": 115,\r\n    \"nombre\": \"Amatitlán\",\r\n    \"codigo\": 15,\r\n    \"departamento_id_departamento\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/municipios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"municipios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Amatitlán (actualizado)\",\r\n    \"codigo\": 15,\r\n    \"departamento_id_departamento\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/municipios/115",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"municipios",
+						"115"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/municipios/115",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"municipios",
+						"115"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.7. Preg
+
+```json
+{
+	"info": {
+		"_postman_id": "4c968c4b-0bf7-46bd-b88b-258fee04755d",
+		"name": "PREG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_preg\": 4,\r\n    \"preg_texto\": \"¿Qué luz del semáforo indica que debe detenerse?\",\r\n    \"res\": \"Roja\",\r\n    \"res1\": \"Verde\",\r\n    \"res2\": \"Amarilla\",\r\n    \"res3\": \"Roja\",\r\n    \"res4\": \"Azul\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"preg_texto\": \"¿Qué luz del semáforo indica 'ALTO'?\",\r\n    \"res\": \"Roja\",\r\n    \"res1\": \"Verde\",\r\n    \"res2\": \"Amarilla\",\r\n    \"res3\": \"Roja\",\r\n    \"res4\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.8. Preg_pract
+
+```json
+{
+	"info": {
+		"_postman_id": "9c52f4c9-143b-4176-b141-d65e21f97a7e",
+		"name": "PREG_PRACT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas-practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas-practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas-practicas/102",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas-practicas",
+						"102"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_preg_pract\": 104,\r\n    \"preg_texto\": \"Respetar señal de ALTO por 3 segundos.\",\r\n    \"punteo\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas-practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas-practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"preg_texto\": \"Respetar señal de ALTO por un mínimo de 3 segundos.\",\r\n    \"punteo\": 15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas-practicas/104",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas-practicas",
+						"104"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/preguntas-practicas/104",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"preguntas-practicas",
+						"104"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.9. Registro
+
+```json
+{
+	"info": {
+		"_postman_id": "93ce84fd-780d-4d01-835c-cc2ebdccc561",
+		"name": "REGISTRO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/registros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"registros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/registros/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"registros",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_registro\": 3,\r\n    \"fecha\": \"2025-10-18T06:00:00.000Z\",\r\n    \"tipo_tramite\": \"Traspaso\",\r\n    \"tipo_licencia\": \"A\",\r\n    \"nombre_completo\": \"Pedro Antonio Páramo\",\r\n    \"genero\": \"M\",\r\n    \"municipio_id_municipio\": 501,\r\n    \"ubicacion_escuela_id\": 200,\r\n    \"ubicacion_centro_id\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/registros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"registros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fecha\": \"2025-10-18T06:00:00.000Z\",\r\n    \"tipo_tramite\": \"Traspaso (actualizado)\",\r\n    \"tipo_licencia\": \"A\",\r\n    \"nombre_completo\": \"Pedro Antonio Páramo\",\r\n    \"genero\": \"M\",\r\n    \"municipio_id_municipio\": 501,\r\n    \"ubicacion_escuela_id\": 200,\r\n    \"ubicacion_centro_id\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/registros/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"registros",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/registros/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"registros",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.10. Rest_Pract_Usu
+
+```json
+{
+	"info": {
+		"_postman_id": "d799b3d3-3575-4615-925c-31bd9c1594a2",
+		"name": "RES_PRACT_USU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-practicas/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-practicas",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_res_pract\": 4,\r\n    \"nota\": 12,\r\n    \"preg_pract_id_preg_pract\": 103,\r\n    \"examen_id_examen\": 1001\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-practicas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-practicas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nota\": 15,\r\n    \"preg_pract_id_preg_pract\": 103,\r\n    \"examen_id_examen\": 1001\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-practicas/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-practicas",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-practicas/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-practicas",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.11. Res_Usu
+
+```json
+{
+	"info": {
+		"_postman_id": "c73548d5-8442-4382-8e4a-d484f48e71cb",
+		"name": "RES_USU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-usuario/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-usuario",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_res_usu\": 5,\r\n    \"res\": \"No rebasar\",\r\n    \"preg_id_preg\": 1,\r\n    \"examen_id_examen\": 1002\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"res\": \"Rebasar con precaución\",\r\n    \"preg_id_preg\": 1,\r\n    \"examen_id_examen\": 1002\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-usuario/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-usuario",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/respuestas-usuario/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"respuestas-usuario",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+### 10.12. Ubicacion
+
+```json
+{
+	"info": {
+		"_postman_id": "687e4cfd-668a-4107-bc93-77ca9684e7f5",
+		"name": "UBICACION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39314623"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/ubicaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ubicaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/ubicaciones/escuela/200/centro/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ubicaciones",
+						"escuela",
+						"200",
+						"centro",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"escuela_id_escuela\": 100,\r\n    \"centro_id_centro\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/ubicaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ubicaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/ubicaciones/escuela/100/centro/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ubicaciones",
+						"escuela",
+						"100",
+						"centro",
+						"20"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
