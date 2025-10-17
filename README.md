@@ -2287,57 +2287,507 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 #### 8.2.10.1. Prueba de GET 
 
+**Endpoint:** /api/examenes
+
+**URL Completa:** http://localhost:3000/api/examenes
+
+**Acción:** Envía la petición.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un array JSON con los 2 exámenes iniciales.
+```json
+[
+    {
+        "ID_EXAMEN": 1001,
+        "REGISTRO_ID_REGISTRO": 1,
+        "CORRELATIVO_ID_CORRELATIVO": 1
+    },
+    {
+        "ID_EXAMEN": 1002,
+        "REGISTRO_ID_REGISTRO": 2,
+        "CORRELATIVO_ID_CORRELATIVO": 2
+    }
+]
+```
+
+![Prueba6](./imgs/exa1.png)
+
 #### 8.2.10.2. Prueba de GET con ID
 
+**Endpoint:** /api/examenes/:id
+
+**URL Completa:** http://localhost:3000/api/examenes/1002
+
+**Acción:** Envía la petición para obtener el examen con ID = 1002.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un único objeto JSON.
+```json
+{
+    "ID_EXAMEN": 1002,
+    "REGISTRO_ID_REGISTRO": 2,
+    "CORRELATIVO_ID_CORRELATIVO": 2
+}
+```
+
+![Prueba6](./imgs/exa2.png)
+
 #### 8.2.10.3. Prueba de POST
 
+**Endpoint:** /api/examenes
+
+**URL Completa:** http://localhost:3000/api/examenes
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usamos un ID nuevo y llaves foráneas que sí existen, asociando un segundo examen al registro 1):
+
+```json
+{
+    "id_examen": 1003,
+    "registro_id_registro": 1,
+    "correlativo_id_correlativo": 2
+}
+```
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+
+```json
+201 Created
+```
+
+**Cuerpo de la Respuesta (Body):**
+
+```json
+{
+    "message": "Examen creado exitosamente",
+    "data": {
+        "id_examen": 1003,
+        "registro_id_registro": 1,
+        "correlativo_id_correlativo": 2
+    }
+}
+```
+
+![Prueba6](./imgs/exa3.png)
+
 #### 8.2.10.4. Prueba de PUT
 
-##### Resultado Esperado:
-#### 8.2.10.5. Prueba de DELETE
+**Endpoint:** /api/examenes/:id
+
+**URL Completa:** http://localhost:3000/api/examenes/1003
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para reasignar el examen al registro con ID 2:
+```json
+{
+    "registro_id_registro": 2,
+    "correlativo_id_correlativo": 2
+}
+```
 
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Examen actualizado exitosamente."
+}
+```
+
+
+![Prueba6](./imgs/exa4.png)
+
+#### 8.2.10.5. Prueba de DELETE
+
+**Endpoint:** /api/examenes/:id
+
+**URL Completa:** http://localhost:3000/api/examenes/1003
+
+**Acción:** Enviar la petición.
+
+##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Examen eliminado exitosamente."
+}
+```
+
+
+![Prueba6](./imgs/exa5.png)
 
 
 ### 8.2.11. Endpoints de RES_PRACT_USU
 
 #### 8.2.11.1. Prueba de GET 
 
+**Endpoint:** /api/respuestas-practicas
+
+**URL Completa:** http://localhost:3000/api/respuestas-practicas
+
+**Acción:** Envía la petición.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un array JSON con las 3 respuestas prácticas iniciales.
+```json
+[
+    {
+        "ID_RES_PRACT": 1,
+        "NOTA": 20,
+        "PREG_PRACT_ID_PREG_PRACT": 101,
+        "EXAMEN_ID_EXAMEN": 1001
+    },
+    {
+        "ID_RES_PRACT": 2,
+        "NOTA": 25,
+        "PREG_PRACT_ID_PREG_PRACT": 102,
+        "EXAMEN_ID_EXAMEN": 1001
+    },
+    {
+        "ID_RES_PRACT": 3,
+        "NOTA": 15,
+        "PREG_PRACT_ID_PREG_PRACT": 103,
+        "EXAMEN_ID_EXAMEN": 1002
+    }
+]
+```
+
+![Prueba6](./imgs/luis1.png)
+
 #### 8.2.11.2. Prueba de GET con ID
 
+**Endpoint:** /api/respuestas-practicas/:id
+
+**URL Completa:** http://localhost:3000/api/respuestas-practicas/3
+
+**Acción:** Envía la petición para obtener la respuesta con ID = 3.
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un único objeto JSON.
+```json
+{
+    "ID_RES_PRACT": 3,
+    "NOTA": 15,
+    "PREG_PRACT_ID_PREG_PRACT": 103,
+    "EXAMEN_ID_EXAMEN": 1002
+}
+```
+
+![Prueba6](./imgs/luis2.png)
+
 #### 8.2.11.3. Prueba de POST
 
+**Endpoint:** /api/respuestas-practicas
+
+**URL Completa:** http://localhost:3000/api/respuestas-practicas
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usamos un ID nuevo y asociamos una nota a un examen y pregunta práctica existentes):
+
+```json
+{
+    "id_res_pract": 4,
+    "nota": 12,
+    "preg_pract_id_preg_pract": 103,
+    "examen_id_examen": 1001
+}
+```
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+201 Created
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Respuesta práctica creada exitosamente",
+    "data": {
+        "id_res_pract": 4,
+        "nota": 12,
+        "preg_pract_id_preg_pract": 103,
+        "examen_id_examen": 1001
+    }
+}
+```
+
+![Prueba6](./imgs/luis3.png)
+
 #### 8.2.11.4. Prueba de PUT
 
-##### Resultado Esperado:
-#### 8.2.11.5. Prueba de DELETE
+**Endpoint:** /api/respuestas-practicas/:id
+
+**URL Completa:** http://localhost:3000/api/respuestas-practicas/4
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para cambiar la nota del registro que acabamos de crear:
+```json
+{
+    "nota": 15,
+    "preg_pract_id_preg_pract": 103,
+    "examen_id_examen": 1001
+}
+```
 
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Respuesta práctica actualizada exitosamente."
+}
+```
+
+
+![Prueba6](./imgs/luis4.png)
+
+#### 8.2.11.5. Prueba de DELETE
+
+**Endpoint:** /api/respuestas-practicas/:id
+
+**URL Completa:** http://localhost:3000/api/respuestas-practicas/4
+
+**Acción:** Enviar la petición.
+
+##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Respuesta práctica eliminada exitosamente."
+}
+```
+
+![Prueba6](./imgs/luis5.png)
 
 ### 8.2.12. Endpoints de RES_USU
 
 #### 8.2.12.1. Prueba de GET 
 
+**Endpoint:** /api/respuestas-usuario
+
+**URL Completa:** http://localhost:3000/api/respuestas-usuario
+
+**Acción:** Envía la petición.
+
 ##### Resultado Esperado:
+
+Código de Estado:
+```json
+200 OK
+```
+
+Cuerpo de la Respuesta (Body): Deberías recibir un array JSON con las 4 respuestas teóricas iniciales.
+```json
+[
+    {
+        "ID_RES_USU": 1,
+        "RES": "No rebasar",
+        "PREG_ID_PREG": 1,
+        "EXAMEN_ID_EXAMEN": 1001
+    },
+    {
+        "ID_RES_USU": 2,
+        "RES": "80 km/h",
+        "PREG_ID_PREG": 2,
+        "EXAMEN_ID_EXAMEN": 1001
+    },
+    {
+        "ID_RES_USU": 3,
+        "RES": "50 km/h",
+        "PREG_ID_PREG": 2,
+        "EXAMEN_ID_EXAMEN": 1002
+    },
+    {
+        "ID_RES_USU": 4,
+        "RES": "Alto total",
+        "PREG_ID_PREG": 3,
+        "EXAMEN_ID_EXAMEN": 1002
+    }
+]
+```
+
+
+![Prueba6](./imgs/reu1.png)
+
 #### 8.2.12.2. Prueba de GET con ID
 
+**Endpoint:** /api/respuestas-usuario/:id
+
+**URL Completa:** http://localhost:3000/api/respuestas-usuario/4
+
+**Acción:** Envía la petición para obtener la respuesta con ID = 4
+
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):** Deberías recibir un único objeto JSON.
+```json
+{
+    "ID_RES_USU": 4,
+    "RES": "Alto total",
+    "PREG_ID_PREG": 3,
+    "EXAMEN_ID_EXAMEN": 1002
+}
+```
+
+![Prueba6](./imgs/reu2.png)
+
 #### 8.2.12.3. Prueba de POST
 
+**Endpoint:** /api/respuestas-usuario
+
+**URL Completa:** http://localhost:3000/api/respuestas-usuario
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usamos un ID nuevo y asociamos una nueva respuesta a un examen y pregunta existentes):
+```json
+{
+    "id_res_usu": 5,
+    "res": "No rebasar",
+    "preg_id_preg": 1,
+    "examen_id_examen": 1002
+}
+```
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+```json
+201 Created
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Respuesta de usuario creada exitosamente",
+    "data": {
+        "id_res_usu": 5,
+        "respuesta": "No rebasar",
+        "preg_id_preg": 1,
+        "examen_id_examen": 1002
+    }
+}
+```
+![Prueba6](./imgs/reu3.png)
+
 #### 8.2.12.4. Prueba de PUT
 
+**Endpoint:** /api/respuestas-usuario/:id
+
+**URL Completa:** http://localhost:3000/api/respuestas-usuario/5
+
+**Acción:**
+
+Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para cambiar la respuesta (res) del registro que acabamos de crear:
+```json
+{
+    "res": "Rebasar con precaución",
+    "preg_id_preg": 1,
+    "examen_id_examen": 1002
+}
+```
+
 ##### Resultado Esperado:
+
+**Código de Estado:**
+
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+
+```json
+{
+    "message": "Respuesta de usuario actualizada exitosamente."
+}
+```
+![Prueba6](./imgs/reu4.png)
+
+
 #### 8.2.12.5. Prueba de DELETE
 
+**Endpoint:** /api/respuestas-usuario/:id
+
+**URL Completa:** http://localhost:3000/api/respuestas-usuario/5
+
+**Acción:** Enviar la petición.
+
 ##### Resultado Esperado:
 
+**Código de Estado:**
+```json
+200 OK
+```
+
+**Cuerpo de la Respuesta (Body):**
+```json
+{
+    "message": "Respuesta de usuario eliminada exitosamente."
+}
+```
+
+![Prueba6](./imgs/reu5.png)
 
 ## 9. Capturas de evidencias
 
