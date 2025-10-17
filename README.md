@@ -52,140 +52,142 @@
   - [8. Uso de Endpoints](#8-uso-de-endpoints)
     - [8.1. Cómo usar ThunderClient](#81-cómo-usar-thunderclient)
     - [8.2. Plan de Pruebas de API](#82-plan-de-pruebas-de-api)
-    - [8.2.1. Endpoints de CENTRO](#821-endpoints-de-centro)
-      - [8.2.1.1. Prueba de GET](#8211-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado)
-      - [8.2.1.2. Prueba de GET con ID](#8212-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-1)
-      - [8.2.1.3. Prueba de POST](#8213-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-2)
-      - [8.2.1.4. Prueba de PUT](#8214-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-3)
-      - [8.2.1.5. Prueba de DELETE](#8215-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-4)
-    - [8.2.2. Endpoints de CORRELATIVO](#822-endpoints-de-correlativo)
-      - [8.2.2.1. Prueba de GET](#8221-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-5)
-      - [8.2.2.2. Prueba de GET con ID](#8222-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-6)
-      - [8.2.2.3. Prueba de POST](#8223-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-7)
-      - [8.2.2.4. Prueba de PUT](#8224-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-8)
-      - [8.2.2.5. Prueba de DELETE](#8225-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-9)
-    - [8.2.3. Endpoints de DEPARTAMENTOS](#823-endpoints-de-departamentos)
-      - [8.2.3.1. Prueba de GET](#8231-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-10)
-      - [8.2.3.2. Prueba de GET con ID](#8232-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-11)
-      - [8.2.3.3. Prueba de POST](#8233-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-12)
-      - [8.2.3.4. Prueba de PUT](#8234-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-13)
-      - [8.2.3.5. Prueba de DELETE](#8235-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-14)
-    - [8.2.4. Endpoints de ESCUELA](#824-endpoints-de-escuela)
-      - [8.2.4.1. Prueba de GET](#8241-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-15)
-      - [8.2.4.2. Prueba de GET con ID](#8242-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-16)
-      - [8.2.4.3. Prueba de POST](#8243-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-17)
-      - [8.2.4.4. Prueba de PUT](#8244-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-18)
-      - [8.2.4.5. Prueba de DELETE](#8245-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-19)
-    - [8.2.5. Endpoints de PREG](#825-endpoints-de-preg)
-      - [8.2.5.1. Prueba de GET](#8251-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-20)
-      - [8.2.5.2. Prueba de GET con ID](#8252-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-21)
-      - [8.2.5.3. Prueba de POST](#8253-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-22)
-      - [8.2.5.4. Prueba de PUT](#8254-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-23)
-      - [8.2.5.5. Prueba de DELETE](#8255-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-24)
-    - [8.2.6. Endpoints de PREG\_PRACT](#826-endpoints-de-preg_pract)
-      - [8.2.6.1. Prueba de GET](#8261-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-25)
-      - [8.2.6.2. Prueba de GET con ID](#8262-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-26)
-      - [8.2.6.3. Prueba de POST](#8263-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-27)
-      - [8.2.6.4. Prueba de PUT](#8264-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-28)
-      - [8.2.6.5. Prueba de DELETE](#8265-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-29)
-    - [8.2.7. Endpoints de MUNICIPIO](#827-endpoints-de-municipio)
-      - [8.2.7.1. Prueba de GET](#8271-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-30)
-      - [8.2.7.2. Prueba de GET con ID](#8272-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-31)
-      - [8.2.7.3. Prueba de POST](#8273-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-32)
-      - [8.2.7.4. Prueba de PUT](#8274-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-33)
-      - [8.2.7.5. Prueba de DELETE](#8275-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-34)
-        - [Resultado Esperado:](#resultado-esperado-35)
-    - [8.2.8. Endpoints de UBICACION](#828-endpoints-de-ubicacion)
-      - [8.2.8.1. Prueba de GET](#8281-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-36)
-      - [8.2.8.2. Prueba de GET con ID](#8282-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-37)
-      - [8.2.8.3. Prueba de POST](#8283-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-38)
-      - [8.2.8.4. Prueba de PUT](#8284-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-39)
-      - [8.2.8.5. Prueba de DELETE](#8285-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-40)
-    - [8.2.9. Endpoints de REGISTRO](#829-endpoints-de-registro)
-      - [8.2.9.1. Prueba de GET](#8291-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-41)
-      - [8.2.9.2. Prueba de GET con ID](#8292-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-42)
-      - [8.2.9.3. Prueba de POST](#8293-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-43)
-      - [8.2.9.4. Prueba de PUT](#8294-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-44)
-      - [8.2.9.5. Prueba de DELETE](#8295-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-45)
-    - [8.2.10. Endpoints de EXAMEN](#8210-endpoints-de-examen)
-      - [8.2.10.1. Prueba de GET](#82101-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-46)
-      - [8.2.10.2. Prueba de GET con ID](#82102-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-47)
-      - [8.2.10.3. Prueba de POST](#82103-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-48)
-      - [8.2.10.4. Prueba de PUT](#82104-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-49)
-      - [8.2.10.5. Prueba de DELETE](#82105-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-50)
-    - [8.2.11. Endpoints de RES\_PRACT\_USU](#8211-endpoints-de-res_pract_usu)
-      - [8.2.11.1. Prueba de GET](#82111-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-51)
-      - [8.2.11.2. Prueba de GET con ID](#82112-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-52)
-      - [8.2.11.3. Prueba de POST](#82113-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-53)
-      - [8.2.11.4. Prueba de PUT](#82114-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-54)
-      - [8.2.11.5. Prueba de DELETE](#82115-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-55)
-    - [8.2.12. Endpoints de RES\_USU](#8212-endpoints-de-res_usu)
-      - [8.2.12.1. Prueba de GET](#82121-prueba-de-get)
-        - [Resultado Esperado:](#resultado-esperado-56)
-      - [8.2.12.2. Prueba de GET con ID](#82122-prueba-de-get-con-id)
-        - [Resultado Esperado:](#resultado-esperado-57)
-      - [8.2.12.3. Prueba de POST](#82123-prueba-de-post)
-        - [Resultado Esperado:](#resultado-esperado-58)
-      - [8.2.12.4. Prueba de PUT](#82124-prueba-de-put)
-        - [Resultado Esperado:](#resultado-esperado-59)
-      - [8.2.12.5. Prueba de DELETE](#82125-prueba-de-delete)
-        - [Resultado Esperado:](#resultado-esperado-60)
-  - [9. Capturas de evidencias](#9-capturas-de-evidencias)
+      - [8.2.1. Endpoints de CENTRO](#821-endpoints-de-centro)
+        - [8.2.1.1. Prueba de GET](#8211-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado)
+        - [8.2.1.2. Prueba de GET con ID](#8212-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-1)
+        - [8.2.1.3. Prueba de POST](#8213-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-2)
+        - [8.2.1.4. Prueba de PUT](#8214-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-3)
+        - [8.2.1.5. Prueba de DELETE](#8215-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-4)
+      - [8.2.2. Endpoints de CORRELATIVO](#822-endpoints-de-correlativo)
+        - [8.2.2.1. Prueba de GET](#8221-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-5)
+        - [8.2.2.2. Prueba de GET con ID](#8222-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-6)
+        - [8.2.2.3. Prueba de POST](#8223-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-7)
+        - [8.2.2.4. Prueba de PUT](#8224-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-8)
+        - [8.2.2.5. Prueba de DELETE](#8225-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-9)
+      - [8.2.3. Endpoints de DEPARTAMENTO](#823-endpoints-de-departamento)
+        - [8.2.3.1. Prueba de GET](#8231-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-10)
+        - [8.2.3.2. Prueba de GET con ID](#8232-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-11)
+        - [8.2.3.3. Prueba de POST](#8233-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-12)
+        - [8.2.3.4. Prueba de PUT](#8234-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-13)
+        - [8.2.3.5. Prueba de DELETE](#8235-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-14)
+      - [8.2.4. Endpoints de ESCUELA](#824-endpoints-de-escuela)
+        - [8.2.4.1. Prueba de GET](#8241-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-15)
+        - [8.2.4.2. Prueba de GET con ID](#8242-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-16)
+        - [8.2.4.3. Prueba de POST](#8243-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-17)
+        - [8.2.4.4. Prueba de PUT](#8244-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-18)
+        - [8.2.4.5. Prueba de DELETE](#8245-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-19)
+      - [8.2.5. Endpoints de PREG](#825-endpoints-de-preg)
+        - [8.2.5.1. Prueba de GET](#8251-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-20)
+        - [8.2.5.2. Prueba de GET con ID](#8252-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-21)
+        - [8.2.5.3. Prueba de POST](#8253-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-22)
+        - [8.2.5.4. Prueba de PUT](#8254-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-23)
+        - [8.2.5.5. Prueba de DELETE](#8255-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-24)
+      - [8.2.6. Endpoints de PREG\_PRACT](#826-endpoints-de-preg_pract)
+        - [8.2.6.1. Prueba de GET](#8261-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-25)
+        - [8.2.6.2. Prueba de GET con ID](#8262-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-26)
+        - [8.2.6.3. Prueba de POST](#8263-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-27)
+        - [8.2.6.4. Prueba de PUT](#8264-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-28)
+        - [8.2.6.5. Prueba de DELETE](#8265-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-29)
+      - [8.2.7. Endpoints de MUNICIPIO](#827-endpoints-de-municipio)
+        - [8.2.7.1. Prueba de GET](#8271-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-30)
+        - [8.2.7.2. Prueba de GET con ID](#8272-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-31)
+        - [8.2.7.3. Prueba de POST](#8273-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-32)
+        - [8.2.7.4. Prueba de PUT](#8274-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-33)
+        - [8.2.7.5. Prueba de DELETE](#8275-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-34)
+      - [8.2.8. Endpoints de UBICACION](#828-endpoints-de-ubicacion)
+        - [8.2.8.1. Prueba de GET](#8281-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-35)
+        - [8.2.8.2. Prueba de GET con ID](#8282-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-36)
+        - [8.2.8.3. Prueba de POST](#8283-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-37)
+        - [8.2.8.4. Prueba de PUT](#8284-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-38)
+        - [8.2.8.5. Prueba de DELETE](#8285-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-39)
+      - [8.2.9. Endpoints de REGISTRO](#829-endpoints-de-registro)
+        - [8.2.9.1. Prueba de GET](#8291-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-40)
+        - [8.2.9.2. Prueba de GET con ID](#8292-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-41)
+        - [8.2.9.3. Prueba de POST](#8293-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-42)
+        - [8.2.9.4. Prueba de PUT](#8294-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-43)
+        - [8.2.9.5. Prueba de DELETE](#8295-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-44)
+      - [8.2.10. Endpoints de EXAMEN](#8210-endpoints-de-examen)
+        - [8.2.10.1. Prueba de GET](#82101-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-45)
+        - [8.2.10.2. Prueba de GET con ID](#82102-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-46)
+        - [8.2.10.3. Prueba de POST](#82103-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-47)
+        - [8.2.10.4. Prueba de PUT](#82104-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-48)
+        - [8.2.10.5. Prueba de DELETE](#82105-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-49)
+      - [8.2.11. Endpoints de RES\_PRACT\_USU](#8211-endpoints-de-res_pract_usu)
+        - [8.2.11.1. Prueba de GET](#82111-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-50)
+        - [8.2.11.2. Prueba de GET con ID](#82112-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-51)
+        - [8.2.11.3. Prueba de POST](#82113-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-52)
+        - [8.2.11.4. Prueba de PUT](#82114-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-53)
+        - [8.2.11.5. Prueba de DELETE](#82115-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-54)
+      - [8.2.12. Endpoints de RES\_USU](#8212-endpoints-de-res_usu)
+        - [8.2.12.1. Prueba de GET](#82121-prueba-de-get)
+          - [Resultado Esperado:](#resultado-esperado-55)
+        - [8.2.12.2. Prueba de GET con ID](#82122-prueba-de-get-con-id)
+          - [Resultado Esperado:](#resultado-esperado-56)
+        - [8.2.12.3. Prueba de POST](#82123-prueba-de-post)
+          - [Resultado Esperado:](#resultado-esperado-57)
+        - [8.2.12.4. Prueba de PUT](#82124-prueba-de-put)
+          - [Resultado Esperado:](#resultado-esperado-58)
+        - [8.2.12.5. Prueba de DELETE](#82125-prueba-de-delete)
+          - [Resultado Esperado:](#resultado-esperado-59)
+      - [8.2.13. Endpoints de Consultas](#8213-endpoints-de-consultas)
+        - [8.2.13.1 Consulta 1 - Estadísticas de evaluaciones por centro y escuela](#82131-consulta-1---estadísticas-de-evaluaciones-por-centro-y-escuela)
+        - [8.2.13.2 Consulta 2 - Ranking de evaluadores por resultado final](#82132-consulta-2---ranking-de-evaluadores-por-resultado-final)
+        - [8.2.13.3 Consulta 3 - La pregunta con menor aciertos](#82133-consulta-3---la-pregunta-con-menor-aciertos)
 
 
 
@@ -748,9 +750,9 @@ Para ralizar todas estas pruebas, se usarán los mismos datos que se usaron para
 
 Ahora bien, estos datos se restaurarán para cada enpoint que se fuere probando.
 
-### 8.2.1. Endpoints de CENTRO
+#### 8.2.1. Endpoints de CENTRO
 
-#### 8.2.1.1. Prueba de GET 
+##### 8.2.1.1. Prueba de GET 
 
 **Endpoint:** /api/centros
 
@@ -758,7 +760,7 @@ Ahora bien, estos datos se restaurarán para cada enpoint que se fuere probando.
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -785,14 +787,14 @@ Ahora bien, estos datos se restaurarán para cada enpoint que se fuere probando.
 ```
 ![Prueba6](./imgs/cc1.png)
 
-#### 8.2.1.2. Prueba de GET con ID
+##### 8.2.1.2. Prueba de GET con ID
 **Endpoint:** /api/centros/:id
 
 **URL Completa:** http://localhost:3000/api/centros/20
 
 **Acción:** Envía la petición para obtener el centro con ID = 20.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -809,7 +811,7 @@ Ahora bien, estos datos se restaurarán para cada enpoint que se fuere probando.
 
 ![Prueba6](./imgs/cc2.png)
 
-#### 8.2.1.3. Prueba de POST
+##### 8.2.1.3. Prueba de POST
 
 Endpoint: /api/centros
 
@@ -827,7 +829,7 @@ Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente o
 
 Y enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 Código de Estado:
 ```json
@@ -847,7 +849,7 @@ Cuerpo de la Respuesta (Body):
 
 ![Prueba6](./imgs/cc3.png)
 
-#### 8.2.1.4. Prueba de PUT
+##### 8.2.1.4. Prueba de PUT
 
 **Endpoint:** /api/centros/:id
 
@@ -865,7 +867,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto:
 Y enviar la petición.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -881,7 +883,7 @@ Y enviar la petición.
 ```
 ![Prueba6](./imgs/cc4.png)
 
-#### 8.2.1.5. Prueba de DELETE
+##### 8.2.1.5. Prueba de DELETE
 
 **Endpoint:** /api/centros/:id
 
@@ -889,7 +891,7 @@ Y enviar la petición.
 
 **Acción:** Enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -907,9 +909,9 @@ Y enviar la petición.
 
 
 
-### 8.2.2. Endpoints de CORRELATIVO
+#### 8.2.2. Endpoints de CORRELATIVO
 
-#### 8.2.2.1. Prueba de GET 
+##### 8.2.2.1. Prueba de GET 
 
 **Endpoint:** /api/correlativos
 
@@ -917,7 +919,7 @@ Y enviar la petición.
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -942,7 +944,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/corre1.png)
 
-#### 8.2.2.2. Prueba de GET con ID
+##### 8.2.2.2. Prueba de GET con ID
 
 **Endpoint:** /api/correlativos/:id
 
@@ -950,7 +952,7 @@ Y enviar la petición.
 
 **Acción:** Envía la petición para obtener el correlativo con ID = 2.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -968,7 +970,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/corre2.png)
 
-#### 8.2.2.3. Prueba de POST
+##### 8.2.2.3. Prueba de POST
 
 **Endpoint:** /api/correlativos
 
@@ -989,7 +991,7 @@ Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente o
 Y enviar la petición.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1010,7 +1012,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/corre3.png)
 
-#### 8.2.2.4. Prueba de PUT
+##### 8.2.2.4. Prueba de PUT
 
 **Endpoint:** /api/correlativos/:id
 
@@ -1029,7 +1031,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 Y enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1045,7 +1047,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/corre4.png)
 
-#### 8.2.2.5. Prueba de DELETE
+##### 8.2.2.5. Prueba de DELETE
 
 **Endpoint:** /api/correlativos/:id
 
@@ -1053,7 +1055,7 @@ Y enviar la petición.
 
 **Acción:** Enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1069,9 +1071,9 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/corre5.png)
 
-### 8.2.3. Endpoints de DEPARTAMENTOS
+#### 8.2.3. Endpoints de DEPARTAMENTO
 
-#### 8.2.3.1. Prueba de GET 
+##### 8.2.3.1. Prueba de GET 
 
 **Endpoint:** /api/departamentos
 
@@ -1079,7 +1081,7 @@ Y enviar la petición.
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 ```JSON
 Código de Estado: 200 OK
 ```
@@ -1110,7 +1112,7 @@ Efectivamente se retornó lo esperado:
 
 ![Prueba6](./imgs/dd1.png)
 
-#### 8.2.3.2. Prueba de GET con ID
+##### 8.2.3.2. Prueba de GET con ID
 
 **Endpoint:** /api/departamentos/:id
 
@@ -1118,7 +1120,7 @@ Efectivamente se retornó lo esperado:
 
 **Acción:** Envía la petición para obtener el departamento con ID = 2.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 ```json
 Código de Estado: 200 OK
 ```
@@ -1137,7 +1139,7 @@ Y efectivamente retornó lo esperado:
 ![Prueba6](./imgs/dd2.png)
 
 
-#### 8.2.3.3. Prueba de POST
+##### 8.2.3.3. Prueba de POST
 
 **Endpoint:** /api/departamentos
 
@@ -1156,7 +1158,7 @@ Ir a la pestaña Body, deleccionar el tipo raw y el formato JSON y pegar el sigu
 ```
  Y enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1181,7 +1183,7 @@ Y efectivamente retornó el resultado esperado:
 ![Prueba6](./imgs/dd3.png)
 
 
-#### 8.2.3.4. Prueba de PUT
+##### 8.2.3.4. Prueba de PUT
 
 **Endpoint:** /api/departamentos/:id
 
@@ -1198,7 +1200,7 @@ Ir a la pestaña Body, selecciona el tipo raw y el formato JSON y pegar el sigui
 
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1216,7 +1218,7 @@ Y efectivamente retornó lo esperado:
 
 ![Prueba6](./imgs/dd4.png)
 
-#### 8.2.3.5. Prueba de DELETE
+##### 8.2.3.5. Prueba de DELETE
 
 **Endpoint:** /api/departamentos/:id
 
@@ -1224,7 +1226,7 @@ Y efectivamente retornó lo esperado:
 
 **Acción:** Enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1243,9 +1245,9 @@ Efectivamente retornó el resultado esperado:
 
 ![Prueba6](./imgs/dd5.png)
 
-### 8.2.4. Endpoints de ESCUELA
+#### 8.2.4. Endpoints de ESCUELA
 
-#### 8.2.4.1. Prueba de GET 
+##### 8.2.4.1. Prueba de GET 
 
 **Endpoint:** /api/escuelas
 
@@ -1253,7 +1255,7 @@ Efectivamente retornó el resultado esperado:
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 Código de Estado:
 ```json
@@ -1289,7 +1291,7 @@ Y efectivamente, dio el resultado correcto:
 
 ![Prueba6](./imgs/es1.png)
 
-#### 8.2.4.2. Prueba de GET con ID
+##### 8.2.4.2. Prueba de GET con ID
 
 **Endpoint:** /api/escuelas/:id
 
@@ -1297,7 +1299,7 @@ Y efectivamente, dio el resultado correcto:
 
 **Acción:** Envía la petición para obtener la escuela con ID = 200.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 Código de Estado:
 ```json
@@ -1319,7 +1321,7 @@ Y efectivamente dio el resultado esperado:
 
 ![Prueba6](./imgs/es2.png)
 
-#### 8.2.4.3. Prueba de POST
+##### 8.2.4.3. Prueba de POST
 
 **Endpoint:** /api/escuelas
 
@@ -1330,7 +1332,7 @@ Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente o
 
 ```json
 {
-    "id_escula": 400,
+    "id_escuela: 400,
     "nombre": "Escuela Vial de Guatemala",
     "direccion": "Zona 10, Edificio Test",
     "acuerdo": "AC-2025-001"
@@ -1339,7 +1341,7 @@ Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente o
 
 Y enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1364,7 +1366,7 @@ Efectivamente dio el resultado esperado:
 
 ![Prueba6](./imgs/es3.png)
 
-#### 8.2.4.4. Prueba de PUT
+##### 8.2.4.4. Prueba de PUT
 
 **Endpoint:** /api/escuelas/:id
 
@@ -1384,7 +1386,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto:
 
 Y enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 Código de Estado:
 
@@ -1403,7 +1405,7 @@ Código de Estado:
 Y se mostró correctamente:
 ![Prueba6](./imgs/es4.png)
 
-#### 8.2.4.5. Prueba de DELETE
+##### 8.2.4.5. Prueba de DELETE
 
 **Endpoint:** /api/escuelas/:id
 
@@ -1412,7 +1414,7 @@ Y se mostró correctamente:
 **Acción:** Enviar la petición.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1431,9 +1433,9 @@ Y se obtuvo el resultado correctamente:
 
 ![Prueba6](./imgs/es5.png)
 
-### 8.2.5. Endpoints de PREG
+#### 8.2.5. Endpoints de PREG
 
-#### 8.2.5.1. Prueba de GET 
+##### 8.2.5.1. Prueba de GET 
 
 **Endpoint:** /api/preguntas
 
@@ -1441,7 +1443,7 @@ Y se obtuvo el resultado correctamente:
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1474,7 +1476,7 @@ Y se obtuvo el resultado correctamente:
 
 ![Prueba6](./imgs/preg1.png)
 
-#### 8.2.5.2. Prueba de GET con ID
+##### 8.2.5.2. Prueba de GET con ID
 
 **Endpoint:** /api/preguntas/:id
 
@@ -1482,7 +1484,7 @@ Y se obtuvo el resultado correctamente:
 
 **Acción:** Envía la petición para obtener la pregunta con ID = 1
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 
@@ -1505,7 +1507,7 @@ Cuerpo de la Respuesta (Body): Deberías recibir un único objeto JSON.
 
 ![Prueba6](./imgs/preg2.png)
 
-#### 8.2.5.3. Prueba de POST
+##### 8.2.5.3. Prueba de POST
 
 **Endpoint:** /api/preguntas
 
@@ -1529,7 +1531,7 @@ Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente o
 Y enviar la petición.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 
 **Código de Estado:**
@@ -1555,7 +1557,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/preg3.png)
 
-#### 8.2.5.4. Prueba de PUT
+##### 8.2.5.4. Prueba de PUT
 
 **Endpoint:** /api/preguntas/:id
 
@@ -1578,7 +1580,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto:
 Y enviar la petición.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1596,7 +1598,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/preg4.png)
 
-#### 8.2.5.5. Prueba de DELETE
+##### 8.2.5.5. Prueba de DELETE
 
 **Endpoint:** /api/preguntas/:id
 
@@ -1605,7 +1607,7 @@ Y enviar la petición.
 **Acción:** Enviar la petición.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1622,9 +1624,9 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/preg5.png)
 
-### 8.2.6. Endpoints de PREG_PRACT
+#### 8.2.6. Endpoints de PREG_PRACT
 
-#### 8.2.6.1. Prueba de GET 
+##### 8.2.6.1. Prueba de GET 
 
 **Endpoint:** /api/preguntas-practicas
 
@@ -1632,7 +1634,7 @@ Y enviar la petición.
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1662,7 +1664,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/ppp1.png)
 
-#### 8.2.6.2. Prueba de GET con ID
+##### 8.2.6.2. Prueba de GET con ID
 
 **Endpoint:** /api/preguntas-practicas/:id
 
@@ -1671,7 +1673,7 @@ Y enviar la petición.
 **Acción:** Envía la petición para obtener la pregunta práctica con ID = 102.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1689,7 +1691,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/ppp2.png)
 
-#### 8.2.6.3. Prueba de POST
+##### 8.2.6.3. Prueba de POST
 
 **Endpoint:** /api/preguntas-practicas
 
@@ -1708,7 +1710,7 @@ Ir a la pestaña Body, seleccionar raw y el formato JSON, y pegar el siguiente o
 
 Y enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 
 **Código de Estado:**
@@ -1731,7 +1733,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/ppp3.png)
 
-#### 8.2.6.4. Prueba de PUT
+##### 8.2.6.4. Prueba de PUT
 
 **Endpoint:** /api/preguntas-practicas/:id
 
@@ -1751,7 +1753,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto:
 Y enviar la petición.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1767,7 +1769,7 @@ Y enviar la petición.
 
 ![Prueba6](./imgs/ppp4.png)
 
-#### 8.2.6.5. Prueba de DELETE
+##### 8.2.6.5. Prueba de DELETE
 
 **Endpoint:** /api/preguntas-practicas/:id
 
@@ -1776,7 +1778,7 @@ Y enviar la petición.
 **Acción:** Enviar la petición.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 
 **Código de Estado:**
@@ -1795,15 +1797,15 @@ Y enviar la petición.
 
 
 
-### 8.2.7. Endpoints de MUNICIPIO
+#### 8.2.7. Endpoints de MUNICIPIO
 
-#### 8.2.7.1. Prueba de GET 
+##### 8.2.7.1. Prueba de GET 
 
 **Endpoint:** /api/municipios
 
 **URL Completa:** http://localhost:3000/api/municipios
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1825,13 +1827,13 @@ Y enviar la petición.
 Efectivamente funcionó correctamente:
 ![Prueba6](./imgs/mm1.png)
 
-#### 8.2.7.2. Prueba de GET con ID
+##### 8.2.7.2. Prueba de GET con ID
 
 **Endpoint:** /api/municipios/:id
 
 **URL Completa:** http://localhost:3000/api/municipios/108
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:** 
 ```json
@@ -1852,7 +1854,7 @@ Efectivamente funcionó correctamente:
 
 ![Prueba6](./imgs/mm2.png)
 
-#### 8.2.7.3. Prueba de POST
+##### 8.2.7.3. Prueba de POST
 
 **Endpoint:** /api/municipios
 
@@ -1869,7 +1871,7 @@ Efectivamente funcionó correctamente:
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 
@@ -1895,7 +1897,7 @@ Y efectivamente funcionó correctamente.
 
 ![Prueba6](./imgs/mm3.png)
 
-#### 8.2.7.4. Prueba de PUT
+##### 8.2.7.4. Prueba de PUT
 
 **Endpoint:** /api/municipios/:id
 
@@ -1911,7 +1913,7 @@ Y efectivamente funcionó correctamente.
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:** 
 ```json
@@ -1931,15 +1933,14 @@ Y efectivamente funcinó:
 ![Prueba6](./imgs/mm4.png)
 
 
-#### 8.2.7.5. Prueba de DELETE
+##### 8.2.7.5. Prueba de DELETE
 
 **Endpoint:** /api/municipios/:id
 
 **URL Completa:** http://localhost:3000/api/municipios/115
 
-##### Resultado Esperado:
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1958,10 +1959,10 @@ Efectivamente funcionó:
 
 ![Prueba6](./imgs/mm5.png)
 
-### 8.2.8. Endpoints de UBICACION
+#### 8.2.8. Endpoints de UBICACION
 
 
-#### 8.2.8.1. Prueba de GET 
+##### 8.2.8.1. Prueba de GET 
 
 **Endpoint:** /api/ubicaciones
 
@@ -1969,7 +1970,7 @@ Efectivamente funcionó:
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -1997,7 +1998,7 @@ Efectivamente funcionó:
 
 ![Prueba6](./imgs/ub1.png)
 
-#### 8.2.8.2. Prueba de GET con ID
+##### 8.2.8.2. Prueba de GET con ID
 
 **Endpoint:** /api/ubicaciones/escuela/:escuelaId/centro/:centroId
 
@@ -2005,7 +2006,7 @@ Efectivamente funcionó:
 
 **Acción:** Envía la petición para obtener la relación específica entre la escuela 200 y el centro 10.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 Código de Estado:
 ```json
@@ -2022,7 +2023,7 @@ Código de Estado:
 
 ![Prueba6](./imgs/ub2.png)
 
-#### 8.2.8.3. Prueba de POST
+##### 8.2.8.3. Prueba de POST
 
 **Endpoint:** /api/ubicaciones
 
@@ -2037,7 +2038,7 @@ Código de Estado:
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2057,13 +2058,13 @@ Código de Estado:
 
 ![Prueba6](./imgs/ub3.png)
 
-#### 8.2.8.4. Prueba de PUT
+##### 8.2.8.4. Prueba de PUT
 
 Al ser una tabla intermedia, no existe el PUT para esta tabla.
 
 
-##### Resultado Esperado:
-#### 8.2.8.5. Prueba de DELETE
+###### Resultado Esperado:
+##### 8.2.8.5. Prueba de DELETE
 
 **Endpoint:** /api/ubicaciones/escuela/:escuelaId/centro/:centroId
 
@@ -2072,7 +2073,7 @@ Al ser una tabla intermedia, no existe el PUT para esta tabla.
 **Acción:** Envía la petición para eliminar la relación que creamos en la prueba 3.1.
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2088,9 +2089,9 @@ Al ser una tabla intermedia, no existe el PUT para esta tabla.
 
 ![Prueba6](./imgs/ub4.png)
 
-### 8.2.9. Endpoints de REGISTRO
+#### 8.2.9. Endpoints de REGISTRO
 
-#### 8.2.9.1. Prueba de GET 
+##### 8.2.9.1. Prueba de GET 
 
 **Endpoint:** /api/registros
 
@@ -2098,7 +2099,7 @@ Al ser una tabla intermedia, no existe el PUT para esta tabla.
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 Código de Estado:
 ```json
@@ -2136,7 +2137,7 @@ Cuerpo de la Respuesta (Body): Deberías recibir un array JSON con los 2 registr
 
 ![Prueba6](./imgs/regi1.png)
 
-#### 8.2.9.2. Prueba de GET con ID
+##### 8.2.9.2. Prueba de GET con ID
 
 **Endpoint:** /api/registros/:id
 
@@ -2144,7 +2145,7 @@ Cuerpo de la Respuesta (Body): Deberías recibir un array JSON con los 2 registr
 
 **Acción:** Envía la petición para obtener el registro con ID = 1.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2169,7 +2170,7 @@ Cuerpo de la Respuesta (Body): Deberías recibir un array JSON con los 2 registr
 
 ![Prueba6](./imgs/regi2.png)
 
-#### 8.2.9.3. Prueba de POST
+##### 8.2.9.3. Prueba de POST
 
 **Endpoint:** /api/registros
 
@@ -2193,7 +2194,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usam
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2220,7 +2221,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usam
 
 ![Prueba6](./imgs/regi3.png)
 
-#### 8.2.9.4. Prueba de PUT
+##### 8.2.9.4. Prueba de PUT
 
 **Endpoint:** /api/registros/:id
 
@@ -2242,7 +2243,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2259,7 +2260,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/regi4.png)
 
-#### 8.2.9.5. Prueba de DELETE
+##### 8.2.9.5. Prueba de DELETE
 
 **Endpoint:** /api/registros/:id
 
@@ -2267,7 +2268,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 **Acción:** Enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2283,9 +2284,9 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/regi5.png)
 
-### 8.2.10. Endpoints de EXAMEN
+#### 8.2.10. Endpoints de EXAMEN
 
-#### 8.2.10.1. Prueba de GET 
+##### 8.2.10.1. Prueba de GET 
 
 **Endpoint:** /api/examenes
 
@@ -2293,7 +2294,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2318,7 +2319,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/exa1.png)
 
-#### 8.2.10.2. Prueba de GET con ID
+##### 8.2.10.2. Prueba de GET con ID
 
 **Endpoint:** /api/examenes/:id
 
@@ -2326,7 +2327,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 **Acción:** Envía la petición para obtener el examen con ID = 1002.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2344,7 +2345,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/exa2.png)
 
-#### 8.2.10.3. Prueba de POST
+##### 8.2.10.3. Prueba de POST
 
 **Endpoint:** /api/examenes
 
@@ -2362,7 +2363,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usam
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 
@@ -2385,7 +2386,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usam
 
 ![Prueba6](./imgs/exa3.png)
 
-#### 8.2.10.4. Prueba de PUT
+##### 8.2.10.4. Prueba de PUT
 
 **Endpoint:** /api/examenes/:id
 
@@ -2401,7 +2402,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2418,7 +2419,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/exa4.png)
 
-#### 8.2.10.5. Prueba de DELETE
+##### 8.2.10.5. Prueba de DELETE
 
 **Endpoint:** /api/examenes/:id
 
@@ -2426,7 +2427,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 **Acción:** Enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2444,9 +2445,9 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 ![Prueba6](./imgs/exa5.png)
 
 
-### 8.2.11. Endpoints de RES_PRACT_USU
+#### 8.2.11. Endpoints de RES_PRACT_USU
 
-#### 8.2.11.1. Prueba de GET 
+##### 8.2.11.1. Prueba de GET 
 
 **Endpoint:** /api/respuestas-practicas
 
@@ -2454,7 +2455,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2487,7 +2488,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/luis1.png)
 
-#### 8.2.11.2. Prueba de GET con ID
+##### 8.2.11.2. Prueba de GET con ID
 
 **Endpoint:** /api/respuestas-practicas/:id
 
@@ -2495,7 +2496,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 **Acción:** Envía la petición para obtener la respuesta con ID = 3.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2514,7 +2515,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/luis2.png)
 
-#### 8.2.11.3. Prueba de POST
+##### 8.2.11.3. Prueba de POST
 
 **Endpoint:** /api/respuestas-practicas
 
@@ -2533,7 +2534,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usam
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2555,7 +2556,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usam
 
 ![Prueba6](./imgs/luis3.png)
 
-#### 8.2.11.4. Prueba de PUT
+##### 8.2.11.4. Prueba de PUT
 
 **Endpoint:** /api/respuestas-practicas/:id
 
@@ -2572,7 +2573,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2589,7 +2590,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/luis4.png)
 
-#### 8.2.11.5. Prueba de DELETE
+##### 8.2.11.5. Prueba de DELETE
 
 **Endpoint:** /api/respuestas-practicas/:id
 
@@ -2597,7 +2598,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 **Acción:** Enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2613,9 +2614,11 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/luis5.png)
 
-### 8.2.12. Endpoints de RES_USU
 
-#### 8.2.12.1. Prueba de GET 
+
+#### 8.2.12. Endpoints de RES_USU
+
+##### 8.2.12.1. Prueba de GET 
 
 **Endpoint:** /api/respuestas-usuario
 
@@ -2623,7 +2626,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 **Acción:** Envía la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 Código de Estado:
 ```json
@@ -2663,16 +2666,16 @@ Cuerpo de la Respuesta (Body): Deberías recibir un array JSON con las 4 respues
 
 ![Prueba6](./imgs/reu1.png)
 
-#### 8.2.12.2. Prueba de GET con ID
+##### 8.2.12.2. Prueba de GET con ID
 
 **Endpoint:** /api/respuestas-usuario/:id
 
-**URL Completa:** http://localhost:3000/api/respuestas-usuario/4
+**URL Completa:** http://localhost:3000/api/respuestas-usuario/3
 
 **Acción:** Envía la petición para obtener la respuesta con ID = 4
 
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2691,7 +2694,7 @@ Cuerpo de la Respuesta (Body): Deberías recibir un array JSON con las 4 respues
 
 ![Prueba6](./imgs/reu2.png)
 
-#### 8.2.12.3. Prueba de POST
+##### 8.2.12.3. Prueba de POST
 
 **Endpoint:** /api/respuestas-usuario
 
@@ -2709,7 +2712,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usam
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2730,7 +2733,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto (usam
 ```
 ![Prueba6](./imgs/reu3.png)
 
-#### 8.2.12.4. Prueba de PUT
+##### 8.2.12.4. Prueba de PUT
 
 **Endpoint:** /api/respuestas-usuario/:id
 
@@ -2747,7 +2750,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 }
 ```
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 
@@ -2765,7 +2768,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 ![Prueba6](./imgs/reu4.png)
 
 
-#### 8.2.12.5. Prueba de DELETE
+##### 8.2.12.5. Prueba de DELETE
 
 **Endpoint:** /api/respuestas-usuario/:id
 
@@ -2773,7 +2776,7 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 **Acción:** Enviar la petición.
 
-##### Resultado Esperado:
+###### Resultado Esperado:
 
 **Código de Estado:**
 ```json
@@ -2789,7 +2792,34 @@ Ir a la pestaña Body, seleccionar raw y JSON, y pegar el siguiente objeto para 
 
 ![Prueba6](./imgs/reu5.png)
 
-## 9. Capturas de evidencias
+#### 8.2.13. Endpoints de Consultas
+
+##### 8.2.13.1 Consulta 1 - Estadísticas de evaluaciones por centro y escuela 
+
+```json
+GET
+http://localhost:3000/api/consultas/estadisticas-evaluaciones
+```
+![Prueba6](./imgs/berti1.png)
+
+
+##### 8.2.13.2 Consulta 2 - Ranking de evaluadores por resultado final  
+
+```json
+GET
+http://localhost:3000/api/consultas/listado-evaluados
+```
+
+![Prueba6](./imgs/berti2.png)
+
+##### 8.2.13.3 Consulta 3 - La pregunta con menor aciertos 
+
+```json
+GET
+http://localhost:3000/api/consultas/pregunta-mas-dificil
+```
+
+![Prueba6](./imgs/berti3.png)
 
 
 
