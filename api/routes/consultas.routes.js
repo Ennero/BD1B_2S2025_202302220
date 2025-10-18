@@ -16,7 +16,6 @@ router.get('/estadisticas-evaluaciones', async (req, res) => {
     try {
         connection = await oracledb.getConnection();
 
-        // ======================= INICIO DE SQL CORREGIDO =======================
         const sql = `
             SELECT
                 c.NOMBRE AS "Centro de Evaluación",
@@ -97,7 +96,6 @@ router.get('/listado-evaluados', async (req, res) => {
     try {
         connection = await oracledb.getConnection();
 
-        // ======================= INICIO DE SQL CORREGIDO =======================
         const sql = `
             SELECT
                 r.NOMBRE_COMPLETO,
@@ -168,7 +166,7 @@ router.get('/listado-evaluados', async (req, res) => {
             ORDER BY
                 "Resultado" ASC,
                 "Punteo Total" DESC,
-                "Fecha de Evaluación" DESC
+                "Fecha de Evaluación"
         `;
         const result = await connection.execute(sql, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         res.status(200).json(result.rows);
@@ -195,38 +193,63 @@ router.get('/pregunta-mas-dificil', async (req, res) => {
     try {
         connection = await oracledb.getConnection();
         const sql = `
-            SELECT
-                p.ID_PREG,
-                p.PREG_TEXTO,
-                p.RES AS "Respuesta Correcta",
-                ps.VECES_CONTESTADA,
-                ps.VECES_CORRECTA,
-                ROUND((ps.VECES_CORRECTA * 100.0) / ps.VECES_CONTESTADA, 2) AS "Porcentaje de Aciertos",
-                CASE
-                    WHEN (ps.VECES_CORRECTA * 100.0) / ps.VECES_CONTESTADA < 50 THEN 'Revisión Urgente'
-                    WHEN (ps.VECES_CORRECTA * 100.0) / ps.VECES_CONTESTADA < 75 THEN 'Revisar'
-                    ELSE 'Aceptable'
-                END AS "Recomendación"
-            FROM
-                PREG p
-            JOIN
-                (
-                    SELECT
-                        p_inner.ID_PREG,
-                        COUNT(ru.ID_RES_USU) AS VECES_CONTESTADA,
-                        COUNT(CASE WHEN ru.RES = p_inner.RES THEN 1 END) AS VECES_CORRECTA
-                    FROM
-                        PREG p_inner
-                    LEFT JOIN
-                        RES_USU ru ON p_inner.ID_PREG = ru.PREG_ID_PREG
-                    GROUP BY
-                        p_inner.ID_PREG
-                    HAVING
-                        COUNT(ru.ID_RES_USU) > 0
-                ) ps ON p.ID_PREG = ps.ID_PREG
-            ORDER BY
-                "Porcentaje de Aciertos" ASC
-            FETCH FIRST 1 ROW ONLY
+                SELECT
+                    p.ID_PREG,
+                    p.PREG_TEXTO,
+                    p.RES AS "Respuesta Correcta (Texto)",
+                    
+                    CASE 
+                        WHEN p.RES1 = p.RES THEN p.RES1 || ' (Correcta)'
+                        ELSE p.RES1
+                    END AS "Opción A",
+                    CASE 
+                        WHEN p.RES2 = p.RES THEN p.RES2 || ' (Correcta)'
+                        ELSE p.RES2
+                    END AS "Opción B",
+                    CASE 
+                        WHEN p.RES3 = p.RES THEN p.RES3 || ' (Correcta)'
+                        ELSE p.RES3
+                    END AS "Opción C",
+                    CASE 
+                        WHEN p.RES4 = p.RES THEN p.RES4 || ' (Correcta)'
+                        ELSE p.RES4
+                    END AS "Opción D",
+                    -- ------------------------------
+                    
+                    (SELECT COUNT(*) FROM RES_USU ru WHERE ru.PREG_ID_PREG = p.ID_PREG AND ru.RES = p.RES1) AS "Veces Opción A",
+                    (SELECT COUNT(*) FROM RES_USU ru WHERE ru.PREG_ID_PREG = p.ID_PREG AND ru.RES = p.RES2) AS "Veces Opción B",
+                    (SELECT COUNT(*) FROM RES_USU ru WHERE ru.PREG_ID_PREG = p.ID_PREG AND ru.RES = p.RES3) AS "Veces Opción C",
+                    (SELECT COUNT(*) FROM RES_USU ru WHERE ru.PREG_ID_PREG = p.ID_PREG AND ru.RES = p.RES4) AS "Veces Opción D",
+                    -- ------------------------------
+
+                    ps.VECES_CONTESTADA,
+                    ps.VECES_CORRECTA,
+                    ROUND((ps.VECES_CORRECTA * 100.0) / ps.VECES_CONTESTADA, 2) AS "Porcentaje de Aciertos",
+                    CASE
+                        WHEN (ps.VECES_CORRECTA * 100.0) / ps.VECES_CONTESTADA < 50 THEN 'Revisión Urgente'
+                        WHEN (ps.VECES_CORRECTA * 100.0) / ps.VECES_CONTESTADA < 75 THEN 'Revisar'
+                        ELSE 'Aceptable'
+                    END AS "Recomendación"
+                FROM
+                    PREG p
+                JOIN
+                    (
+                        SELECT
+                            p_inner.ID_PREG,
+                            COUNT(ru.ID_RES_USU) AS VECES_CONTESTADA,
+                            COUNT(CASE WHEN ru.RES = p_inner.RES THEN 1 END) AS VECES_CORRECTA
+                        FROM
+                            PREG p_inner
+                        LEFT JOIN
+                            RES_USU ru ON p_inner.ID_PREG = ru.PREG_ID_PREG
+                        GROUP BY
+                            p_inner.ID_PREG
+                        HAVING
+                            COUNT(ru.ID_RES_USU) > 0
+                    ) ps ON p.ID_PREG = ps.ID_PREG
+                ORDER BY
+                    "Porcentaje de Aciertos" ASC
+                FETCH FIRST 1 ROW ONLY 
         `;
         const result = await connection.execute(sql, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         // Como solo esperamos una fila, devolvemos el objeto directamente.
