@@ -16,23 +16,23 @@ async function checkDepartamentoExists(connection, departamentoId) {
 
 // GET (Traer todos los municipios)
 router.get('/', async (req, res) => {
-  let connection;
-  try {
-    connection = await oracledb.getConnection();
-    const result = await connection.execute('SELECT * FROM MUNICIPIO ORDER BY ID_MUNICIPIO');
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Error al obtener los municipios' });
-  } finally {
-    if (connection) {
-      try {
-        await connection.close();
-      } catch (err) {
+    let connection;
+    try {
+        connection = await oracledb.getConnection();
+        const result = await connection.execute('SELECT * FROM MUNICIPIO ORDER BY ID_MUNICIPIO');
+        res.status(200).json(result.rows);
+    } catch (err) {
         console.error(err);
-      }
+        res.status(500).json({ message: 'Error al obtener los municipios' });
+    } finally {
+        if (connection) {
+            try {
+                await connection.close();
+            } catch (err) {
+                console.error(err);
+            }
+        }
     }
-  }
 });
 
 // GET (Traer un municipio por su ID)
@@ -65,45 +65,45 @@ router.get('/:id', async (req, res) => {
 
 // POST (Crear un nuevo municipio)
 router.post('/', async (req, res) => {
-  const { id_municipio, nombre, codigo, departamento_id_departamento } = req.body;
-  
-  if (!id_municipio || !nombre || codigo === undefined || !departamento_id_departamento) {
-    return res.status(400).json({ message: 'Todos los campos son requeridos: id_municipio, nombre, codigo, departamento_id_departamento.' });
-  }
+    const { id_municipio, nombre, codigo, departamento_id_departamento } = req.body;
 
-  let connection;
-  try {
-    connection = await oracledb.getConnection();
-
-    // *** VALIDACIÓN DE LLAVE FORÁNEA ***
-    const departamentoExiste = await checkDepartamentoExists(connection, departamento_id_departamento);
-    if (!departamentoExiste) {
-        return res.status(404).json({ message: `El departamento con ID ${departamento_id_departamento} no existe.` });
+    if (!id_municipio || !nombre || codigo === undefined || !departamento_id_departamento) {
+        return res.status(400).json({ message: 'Todos los campos son requeridos: id_municipio, nombre, codigo, departamento_id_departamento.' });
     }
 
-    const newMunicipio = { id_municipio, nombre, codigo, departamento_id_departamento };
-    await connection.execute(
-      `INSERT INTO MUNICIPIO (ID_MUNICIPIO, NOMBRE, CODIGO, DEPARTAMENTO_ID_DEPARTAMENTO) 
+    let connection;
+    try {
+        connection = await oracledb.getConnection();
+
+        // VALIDACIÓN DE LLAVE FORÁNEA 
+        const departamentoExiste = await checkDepartamentoExists(connection, departamento_id_departamento);
+        if (!departamentoExiste) {
+            return res.status(404).json({ message: `El departamento con ID ${departamento_id_departamento} no existe.` });
+        }
+
+        const newMunicipio = { id_municipio, nombre, codigo, departamento_id_departamento };
+        await connection.execute(
+            `INSERT INTO MUNICIPIO (ID_MUNICIPIO, NOMBRE, CODIGO, DEPARTAMENTO_ID_DEPARTAMENTO) 
        VALUES (:id_municipio, :nombre, :codigo, :departamento_id_departamento)`,
-      newMunicipio,
-      { autoCommit: true }
-    );
-    res.status(201).json({ message: 'Municipio creado exitosamente', data: newMunicipio });
-  } catch (err) {
-    console.error(err);
-    if (err.errorNum === 1) {
-        return res.status(409).json({ message: 'Error: El ID del municipio ya existe.' });
-    }
-    res.status(500).json({ message: 'Error al crear el municipio' });
-  } finally {
-    if (connection) {
-      try {
-        await connection.close();
-      } catch (err) {
+            newMunicipio,
+            { autoCommit: true }
+        );
+        res.status(201).json({ message: 'Municipio creado exitosamente', data: newMunicipio });
+    } catch (err) {
         console.error(err);
-      }
+        if (err.errorNum === 1) {
+            return res.status(409).json({ message: 'Error: El ID del municipio ya existe.' });
+        }
+        res.status(500).json({ message: 'Error al crear el municipio' });
+    } finally {
+        if (connection) {
+            try {
+                await connection.close();
+            } catch (err) {
+                console.error(err);
+            }
+        }
     }
-  }
 });
 
 // PUT (Actualizar un municipio por su ID)
@@ -119,7 +119,7 @@ router.put('/:id', async (req, res) => {
     try {
         connection = await oracledb.getConnection();
 
-        // *** VALIDACIÓN DE LLAVE FORÁNEA ***
+        // VALIDACIÓN DE LLAVE FORÁNEA
         const departamentoExiste = await checkDepartamentoExists(connection, departamento_id_departamento);
         if (!departamentoExiste) {
             return res.status(404).json({ message: `El departamento con ID ${departamento_id_departamento} no existe.` });

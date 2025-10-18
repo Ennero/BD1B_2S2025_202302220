@@ -2,10 +2,8 @@ const { Router } = require('express');
 const oracledb = require('oracledb');
 const router = Router();
 
-// Ensure output is in JSON object format
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
-// --- Validation Helper Functions ---
 async function checkMunicipioExists(connection, municipioId) {
     const result = await connection.execute(
         `SELECT ID_MUNICIPIO FROM MUNICIPIO WHERE ID_MUNICIPIO = :id`,
@@ -95,20 +93,19 @@ router.post('/', async (req, res) => {
         if (!ubicacionExiste) {
             return res.status(404).json({ message: `The Ubicacion with Escuela ID ${ubicacion_escuela_id} and Centro ID ${ubicacion_centro_id} does not exist.` });
         }
-        
-        // *** CORRECCIÓN CLAVE ***
+
         // Convertimos la cadena de fecha a un objeto Date de JavaScript.
         const fechaAsDate = new Date(fecha);
 
         const newRegistro = { id_registro, fecha: fechaAsDate, tipo_tramite, tipo_licencia, nombre_completo, genero, municipio_id_municipio, ubicacion_escuela_id, ubicacion_centro_id };
-        
+
         await connection.execute(
             `INSERT INTO REGISTRO (ID_REGISTRO, FECHA, TIPO_TRAMITE, TIPO_LICENCIA, NOMBRE_COMPLETO, GENERO, MUNICIPIO_ID_MUNICIPIO, UBICACION_ESCUELA_ID, UBICACION_CENTRO_ID) 
              VALUES (:id_registro, :fecha, :tipo_tramite, :tipo_licencia, :nombre_completo, :genero, :municipio_id_municipio, :ubicacion_escuela_id, :ubicacion_centro_id)`,
             newRegistro,
             { autoCommit: true }
         );
-        
+
         // Devolvemos la fecha original en el response para consistencia con lo enviado
         res.status(201).json({ message: 'Registro created successfully', data: { ...newRegistro, fecha } });
 
@@ -146,7 +143,6 @@ router.put('/:id', async (req, res) => {
     try {
         connection = await oracledb.getConnection();
 
-        // *** CORRECCIÓN CLAVE ***
         // También aplicamos la conversión de fecha aquí.
         const fechaAsDate = new Date(fecha);
 

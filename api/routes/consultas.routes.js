@@ -15,30 +15,46 @@ router.get('/estadisticas-evaluaciones', async (req, res) => {
     let connection;
     try {
         connection = await oracledb.getConnection();
+
+        // ======================= INICIO DE SQL CORREGIDO =======================
         const sql = `
             SELECT
                 c.NOMBRE AS "Centro de Evaluación",
                 e.NOMBRE AS "Escuela de Manejo",
                 COUNT(ex.ID_EXAMEN) AS "Total de Exámenes",
+                
+                -- Subconsulta para el promedio teórico
                 ROUND(AVG(
-                    (SELECT (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                    (SELECT
+                        CASE
+                            WHEN COUNT(ru.ID_RES_USU) = 0 THEN 0 -- Si no hay respuestas, la nota es 0
+                            ELSE (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                        END
                      FROM RES_USU ru
                      JOIN PREG p ON ru.PREG_ID_PREG = p.ID_PREG
                      WHERE ru.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN)
                 ), 2) AS "Promedio Teórico",
+                
+                -- Subconsulta para el promedio práctico (Mejorada con NVL)
                 ROUND(AVG(
-                    (SELECT SUM(NOTA)
+                    (SELECT NVL(SUM(NOTA), 0) -- Si no hay notas, el total es 0
                      FROM RES_PRACT_USU rpu
                      WHERE rpu.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN)
                 ), 2) AS "Promedio Práctico",
+                
+                -- Subconsulta para contar los aprobados
                 SUM(CASE
                     WHEN
-                        (SELECT (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                        (SELECT
+                            CASE
+                                WHEN COUNT(ru.ID_RES_USU) = 0 THEN 0 -- Si no hay respuestas, la nota es 0
+                                ELSE (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                            END
                          FROM RES_USU ru
                          JOIN PREG p ON ru.PREG_ID_PREG = p.ID_PREG
                          WHERE ru.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN) >= 70
                         AND
-                        (SELECT SUM(NOTA)
+                        (SELECT NVL(SUM(NOTA), 0) -- Si no hay notas, el total es 0
                          FROM RES_PRACT_USU rpu
                          WHERE rpu.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN) >= 70
                     THEN 1 ELSE 0
@@ -80,6 +96,8 @@ router.get('/listado-evaluados', async (req, res) => {
     let connection;
     try {
         connection = await oracledb.getConnection();
+
+        // ======================= INICIO DE SQL CORREGIDO =======================
         const sql = `
             SELECT
                 r.NOMBRE_COMPLETO,
@@ -87,19 +105,33 @@ router.get('/listado-evaluados', async (req, res) => {
                 r.GENERO,
                 r.FECHA AS "Fecha de Evaluación",
                 c.NOMBRE || ' / ' || e.NOMBRE AS "Ubicación",
+                
+                -- Subconsulta para Punteo Teórico
                 ROUND(
-                    (SELECT (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                    (SELECT
+                        CASE
+                            WHEN COUNT(ru.ID_RES_USU) = 0 THEN 0
+                            ELSE (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                        END
                      FROM RES_USU ru
                      JOIN PREG p ON ru.PREG_ID_PREG = p.ID_PREG
                      WHERE ru.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN)
                 , 2) AS "Punteo Teórico",
+                
+                -- Subconsulta para Punteo Práctico 
                 ROUND(
                     (SELECT NVL(SUM(NOTA), 0)
                      FROM RES_PRACT_USU rpu
                      WHERE rpu.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN)
                 , 2) AS "Punteo Práctico",
+                
+                -- Suma de las dos subconsultas para Punteo Total 
                 ROUND(
-                    (SELECT (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                    (SELECT
+                        CASE
+                            WHEN COUNT(ru.ID_RES_USU) = 0 THEN 0
+                            ELSE (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                        END
                      FROM RES_USU ru
                      JOIN PREG p ON ru.PREG_ID_PREG = p.ID_PREG
                      WHERE ru.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN)
@@ -108,9 +140,15 @@ router.get('/listado-evaluados', async (req, res) => {
                      FROM RES_PRACT_USU rpu
                      WHERE rpu.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN)
                 , 2) AS "Punteo Total",
+                
+                -- Lógica de Resultado (CORREGIDA)
                 CASE
                     WHEN
-                        (SELECT (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                        (SELECT
+                            CASE
+                                WHEN COUNT(ru.ID_RES_USU) = 0 THEN 0
+                                ELSE (COUNT(CASE WHEN ru.RES = p.RES THEN 1 END) * 100.0) / COUNT(ru.ID_RES_USU)
+                            END
                          FROM RES_USU ru
                          JOIN PREG p ON ru.PREG_ID_PREG = p.ID_PREG
                          WHERE ru.EXAMEN_ID_EXAMEN = ex.ID_EXAMEN) >= 70
@@ -150,7 +188,7 @@ router.get('/listado-evaluados', async (req, res) => {
 
 
 // ===================================================================
-// ENDPOINT PARA LA CONSULTA 3: Pregunta Teórica Más Difícil
+// ENDPOINT PARA LA CONSULTA 3: Pregunta Teórica Más Difícil 
 // ===================================================================
 router.get('/pregunta-mas-dificil', async (req, res) => {
     let connection;

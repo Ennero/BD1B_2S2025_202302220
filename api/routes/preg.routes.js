@@ -28,42 +28,40 @@ router.get('/', async (req, res) => {
 
 // GET (Traer una pregunta por su ID)
 router.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    let connection;
-    try {
-        connection = await oracledb.getConnection();
-        const result = await connection.execute(
-            `SELECT * FROM PREG WHERE ID_PREG = :id`,
-            [id]
-        );
-        if (result.rows.length === 0) {
-            return res.status(404).json({ message: 'Pregunta no encontrada' });
-        }
-        res.status(200).json(result.rows[0]);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Error al obtener la pregunta' });
-    } finally {
-        if (connection) {
-            try {
-                await connection.close();
-            } catch (err) {
-                console.error(err);
-            }
-        }
+  const { id } = req.params;
+  let connection;
+  try {
+    connection = await oracledb.getConnection();
+    const result = await connection.execute(
+      `SELECT * FROM PREG WHERE ID_PREG = :id`,
+      [id]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Pregunta no encontrada' });
     }
+    res.status(200).json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error al obtener la pregunta' });
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
 });
 
 // POST (Crear una nueva pregunta)
 router.post('/', async (req, res) => {
-  // CORRECCIÓN: Renombramos 'res' a 'respuesta' para evitar conflicto con el objeto Response de Express.
   const { id_preg, preg_texto, res: respuesta, res1, res2, res3 = null, res4 = null } = req.body;
-  
+
   if (!id_preg || !preg_texto || !respuesta || !res1 || !res2) {
     return res.status(400).json({ message: 'ID_PREG, PREG_TEXTO, RES, RES1 y RES2 son requeridos.' });
   }
 
-  // Usamos el nuevo nombre de variable 'respuesta' pero lo asignamos a la clave 'res' para el INSERT
   const newPreg = { id_preg, preg_texto, res: respuesta, res1, res2, res3, res4 };
 
   let connection;
@@ -79,7 +77,7 @@ router.post('/', async (req, res) => {
   } catch (err) {
     console.error(err);
     if (err.errorNum === 1) {
-        return res.status(409).json({ message: 'Error: El ID de la pregunta ya existe.' });
+      return res.status(409).json({ message: 'Error: El ID de la pregunta ya existe.' });
     }
     res.status(500).json({ message: 'Error al crear la pregunta' });
   } finally {
@@ -95,74 +93,73 @@ router.post('/', async (req, res) => {
 
 // PUT (Actualizar una pregunta por su ID)
 router.put('/:id', async (req, res) => {
-    const { id } = req.params;
-    // CORRECCIÓN: Renombramos 'res' a 'respuesta' aquí también.
-    const { preg_texto, res: respuesta, res1, res2, res3 = null, res4 = null } = req.body;
+  const { id } = req.params;
+  const { preg_texto, res: respuesta, res1, res2, res3 = null, res4 = null } = req.body;
 
-    if (!preg_texto || !respuesta || !res1 || !res2) {
-        return res.status(400).json({ message: 'Los campos PREG_TEXTO, RES, RES1 y RES2 son requeridos.' });
-    }
+  if (!preg_texto || !respuesta || !res1 || !res2) {
+    return res.status(400).json({ message: 'Los campos PREG_TEXTO, RES, RES1 y RES2 son requeridos.' });
+  }
 
-    // Mapeamos de vuelta a la clave 'res' para la consulta UPDATE
-    const updatedPreg = { id, preg_texto, res: respuesta, res1, res2, res3, res4 };
+  // Mapeamos de vuelta a la clave 'res' para la consulta UPDATE
+  const updatedPreg = { id, preg_texto, res: respuesta, res1, res2, res3, res4 };
 
-    let connection;
-    try {
-        connection = await oracledb.getConnection();
-        const result = await connection.execute(
-            `UPDATE PREG 
+  let connection;
+  try {
+    connection = await oracledb.getConnection();
+    const result = await connection.execute(
+      `UPDATE PREG 
              SET PREG_TEXTO = :preg_texto, RES = :res, RES1 = :res1, RES2 = :res2, RES3 = :res3, RES4 = :res4 
              WHERE ID_PREG = :id`,
-            updatedPreg,
-            { autoCommit: true }
-        );
+      updatedPreg,
+      { autoCommit: true }
+    );
 
-        if (result.rowsAffected === 0) {
-            return res.status(404).json({ message: 'Pregunta no encontrada para actualizar.' });
-        }
-        res.status(200).json({ message: 'Pregunta actualizada exitosamente.' });
-
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Error al actualizar la pregunta.' });
-    } finally {
-        if (connection) {
-            try {
-                await connection.close();
-            } catch (err) {
-                console.error(err);
-            }
-        }
+    if (result.rowsAffected === 0) {
+      return res.status(404).json({ message: 'Pregunta no encontrada para actualizar.' });
     }
+    res.status(200).json({ message: 'Pregunta actualizada exitosamente.' });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error al actualizar la pregunta.' });
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
 });
 
 // DELETE (Eliminar una pregunta por su ID)
 router.delete('/:id', async (req, res) => {
-    const { id } = req.params;
-    let connection;
-    try {
-        connection = await oracledb.getConnection();
-        const result = await connection.execute(
-            `DELETE FROM PREG WHERE ID_PREG = :id`,
-            [id],
-            { autoCommit: true }
-        );
-        if (result.rowsAffected === 0) {
-            return res.status(404).json({ message: 'Pregunta no encontrada para eliminar.' });
-        }
-        res.status(200).json({ message: 'Pregunta eliminada exitosamente.' });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Error al eliminar la pregunta.' });
-    } finally {
-        if (connection) {
-            try {
-                await connection.close();
-            } catch (err) {
-                console.error(err);
-            }
-        }
+  const { id } = req.params;
+  let connection;
+  try {
+    connection = await oracledb.getConnection();
+    const result = await connection.execute(
+      `DELETE FROM PREG WHERE ID_PREG = :id`,
+      [id],
+      { autoCommit: true }
+    );
+    if (result.rowsAffected === 0) {
+      return res.status(404).json({ message: 'Pregunta no encontrada para eliminar.' });
     }
+    res.status(200).json({ message: 'Pregunta eliminada exitosamente.' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error al eliminar la pregunta.' });
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
 });
 
 module.exports = router;

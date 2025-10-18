@@ -1,0 +1,1554 @@
+{
+	"info": {
+		"_postman_id": "c1f1f2e1-a3f1-4b1a-8c7a-9e3d0c4d7b2a",
+		"name": "Carga de Datos (API Evaluación)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Catálogos (Sin Dependencias)",
+			"item": [
+				{
+					"name": "DEPARTAMENTO",
+					"item": [
+						{
+							"name": "Create Depto: Guatemala",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_departamento\": 1,\r\n    \"nombre\": \"Guatemala\",\r\n    \"codigo\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/departamentos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"departamentos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Depto: Sacatepéquez",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_departamento\": 2,\r\n    \"nombre\": \"Sacatepéquez\",\r\n    \"codigo\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/departamentos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"departamentos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Depto: Escuintla",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_departamento\": 3,\r\n    \"nombre\": \"Escuintla\",\r\n    \"codigo\": 5\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/departamentos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"departamentos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CENTRO",
+					"item": [
+						{
+							"name": "Create Centro: Zona 12",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_centro\": 1,\r\n    \"nombre\": \"Centro de Evaluación Zona 12\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/centros",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"centros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Centro: Antigua Guatemala",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_centro\": 2,\r\n    \"nombre\": \"Centro de Evaluación Antigua Guatemala\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/centros",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"centros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Centro: Escuintla",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_centro\": 3,\r\n    \"nombre\": \"Centro de Evaluación Escuintla\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/centros",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"centros"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ESCUELA",
+					"item": [
+						{
+							"name": "Create Escuela: AutoMaster",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_escuela\": 1,\r\n    \"nombre\": \"Escuela de Manejo AutoMaster\",\r\n    \"direccion\": \"Avenida Reforma 15-45, Zona 10\",\r\n    \"acuerdo\": \"ESC-AM-001\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/escuelas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"escuelas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Escuela: GuateDrive",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_escuela\": 2,\r\n    \"nombre\": \"Academia Vial GuateDrive\",\r\n    \"direccion\": \"Boulevard Los Próceres 18-20, Zona 10\",\r\n    \"acuerdo\": \"ESC-GD-002\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/escuelas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"escuelas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Escuela: Instituto de Conducción Segura",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_escuela\": 3,\r\n    \"nombre\": \"Instituto de Conducción Segura\",\r\n    \"direccion\": \"Calzada Roosevelt 25-30, Zona 11\",\r\n    \"acuerdo\": \"ESC-ICS-003\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/escuelas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"escuelas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PREG (Teóricas)",
+					"item": [
+						{
+							"name": "Create Preg 1: Distancia",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_preg\": 1,\r\n    \"preg_texto\": \"¿Cuál es la distancia mínima que debe mantener entre vehículos en carretera?\",\r\n    \"res\": \"3 segundos de distancia\",\r\n    \"res1\": \"2 metros\",\r\n    \"res2\": \"3 segundos de distancia\",\r\n    \"res3\": \"5 metros\",\r\n    \"res4\": \"1 segundo de distancia\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/preguntas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"preguntas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Preg 2: Alto",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_preg\": 2,\r\n    \"preg_texto\": \"¿Qué significa una señal de alto?\",\r\n    \"res\": \"Detenerse completamente\",\r\n    \"res1\": \"Reducir velocidad\",\r\n    \"res2\": \"Detenerse completamente\",\r\n    \"res3\": \"Ceder el paso\",\r\n    \"res4\": \"Continuar con precaución\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/preguntas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"preguntas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Preg 3: Zona Escolar",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_preg\": 3,\r\n    \"preg_texto\": \"¿Cuál es el límite de velocidad en zona escolar?\",\r\n    \"res\": \"20 km/h\",\r\n    \"res1\": \"20 km/h\",\r\n    \"res2\": \"30 km/h\",\r\n    \"res3\": \"40 km/h\",\r\n    \"res4\": \"50 km/h\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/preguntas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"preguntas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Preg 4: Ambulancia",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_preg\": 4,\r\n    \"preg_texto\": \"¿Qué debe hacer al ver una ambulancia con sirena activada?\",\r\n    \"res\": \"Orillarse y detenerse\",\r\n    \"res1\": \"Mantener velocidad\",\r\n    \"res2\": \"Acelerar para salir del camino\",\r\n    \"res3\": \"Orillarse y detenerse\",\r\n    \"res4\": \"Ignorar la sirena\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/preguntas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"preguntas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PREG_PRACT (Prácticas)",
+					"item": [
+						{
+							"name": "Create Preg_Pract 1: Paralelo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_preg_pract\": 1,\r\n    \"preg_texto\": \"Realizar estacionamiento en paralelo en un espacio de 6 metros\",\r\n    \"punteo\": 20\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/preguntas-practicas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"preguntas-practicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Preg_Pract 2: Reversa",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_preg_pract\": 2,\r\n    \"preg_texto\": \"Conducir en reversa por 50 metros manteniendo trayectoria recta\",\r\n    \"punteo\": 15\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/preguntas-practicas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"preguntas-practicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Preg_Pract 3: Tres Puntos",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_preg_pract\": 3,\r\n    \"preg_texto\": \"Maniobra de tres puntos en espacio reducido\",\r\n    \"punteo\": 25\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/preguntas-practicas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"preguntas-practicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Preg_Pract 4: Urbana",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_preg_pract\": 4,\r\n    \"preg_texto\": \"Conducción en zona urbana respetando señales de tránsito\",\r\n    \"punteo\": 30\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/preguntas-practicas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"preguntas-practicas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CORRELATIVO",
+					"item": [
+						{
+							"name": "Create Correlativo 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_correlativo\": 1,\r\n    \"fecha\": \"2025-01-15\",\r\n    \"no_examen\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/correlativos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"correlativos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Correlativo 2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_correlativo\": 2,\r\n    \"fecha\": \"2025-01-15\",\r\n    \"no_examen\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/correlativos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"correlativos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Correlativo 3",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_correlativo\": 3,\r\n    \"fecha\": \"2025-01-16\",\r\n    \"no_examen\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/correlativos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"correlativos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Correlativo 4",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_correlativo\": 4,\r\n    \"fecha\": \"2025-01-17\",\r\n    \"no_examen\": 4\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/correlativos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"correlativos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Correlativo 5",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_correlativo\": 5,\r\n    \"fecha\": \"2025-01-18\",\r\n    \"no_examen\": 5\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/correlativos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"correlativos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "2. Dependencias Nivel 1",
+			"item": [
+				{
+					"name": "MUNICIPIO",
+					"item": [
+						{
+							"name": "Create Municipio: Guatemala",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_municipio\": 1,\r\n    \"nombre\": \"Guatemala\",\r\n    \"codigo\": 1,\r\n    \"departamento_id_departamento\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/municipios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"municipios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Municipio: Mixco",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_municipio\": 2,\r\n    \"nombre\": \"Mixco\",\r\n    \"codigo\": 2,\r\n    \"departamento_id_departamento\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/municipios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"municipios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Municipio: Villa Nueva",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_municipio\": 3,\r\n    \"nombre\": \"Villa Nueva\",\r\n    \"codigo\": 3,\r\n    \"departamento_id_departamento\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/municipios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"municipios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Municipio: Escuintla",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_municipio\": 4,\r\n    \"nombre\": \"Escuintla\",\r\n    \"codigo\": 1,\r\n    \"departamento_id_departamento\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/municipios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"municipios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Municipio: Antigua Guatemala",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_municipio\": 5,\r\n    \"nombre\": \"Antigua Guatemala\",\r\n    \"codigo\": 1,\r\n    \"departamento_id_departamento\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/municipios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"municipios"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UBICACION",
+					"item": [
+						{
+							"name": "Create Ubicacion: Esc 1, Ctr 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"escuela_id_escuela\": 1,\r\n    \"centro_id_centro\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/ubicaciones",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ubicaciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Ubicacion: Esc 1, Ctr 2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"escuela_id_escuela\": 1,\r\n    \"centro_id_centro\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/ubicaciones",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ubicaciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Ubicacion: Esc 2, Ctr 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"escuela_id_escuela\": 2,\r\n    \"centro_id_centro\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/ubicaciones",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ubicaciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Ubicacion: Esc 3, Ctr 2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"escuela_id_escuela\": 3,\r\n    \"centro_id_centro\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/ubicaciones",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ubicaciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Ubicacion: Esc 3, Ctr 3",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"escuela_id_escuela\": 3,\r\n    \"centro_id_centro\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/ubicaciones",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ubicaciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Ubicacion: Esc 2, Ctr 2 (FIX)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"escuela_id_escuela\": 2,\r\n    \"centro_id_centro\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/ubicaciones",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"ubicaciones"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "3. Registros y Exámenes",
+			"item": [
+				{
+					"name": "REGISTRO",
+					"item": [
+						{
+							"name": "Create Registro 1: Juan Carlos",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_registro\": 1,\r\n    \"fecha\": \"2025-01-15\",\r\n    \"tipo_tramite\": \"Licencia de Conducir\",\r\n    \"tipo_licencia\": \"A\",\r\n    \"nombre_completo\": \"Juan Carlos López García\",\r\n    \"genero\": \"M\",\r\n    \"municipio_id_municipio\": 1,\r\n    \"ubicacion_escuela_id\": 1,\r\n    \"ubicacion_centro_id\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/registros",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"registros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Registro 2: María Elena",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_registro\": 2,\r\n    \"fecha\": \"2025-01-15\",\r\n    \"tipo_tramite\": \"Licencia de Conducir\",\r\n    \"tipo_licencia\": \"B\",\r\n    \"nombre_completo\": \"María Elena Rodríguez Morales\",\r\n    \"genero\": \"F\",\r\n    \"municipio_id_municipio\": 2,\r\n    \"ubicacion_escuela_id\": 1,\r\n    \"ubicacion_centro_id\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/registros",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"registros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Registro 3: Carlos Alberto",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_registro\": 3,\r\n    \"fecha\": \"2025-01-16\",\r\n    \"tipo_tramite\": \"Licencia de Conducir\",\r\n    \"tipo_licencia\": \"A\",\r\n    \"nombre_completo\": \"Carlos Alberto Méndez Castillo\",\r\n    \"genero\": \"M\",\r\n    \"municipio_id_municipio\": 3,\r\n    \"ubicacion_escuela_id\": 2,\r\n    \"ubicacion_centro_id\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/registros",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"registros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Registro 4: Ana Sofía",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_registro\": 4,\r\n    \"fecha\": \"2025-01-17\",\r\n    \"tipo_tramite\": \"Licencia de Conducir\",\r\n    \"tipo_licencia\": \"A\",\r\n    \"nombre_completo\": \"Ana Sofía Guerrero Díaz\",\r\n    \"genero\": \"F\",\r\n    \"municipio_id_municipio\": 4,\r\n    \"ubicacion_escuela_id\": 3,\r\n    \"ubicacion_centro_id\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/registros",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"registros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Registro 5: Pedro José",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_registro\": 5,\r\n    \"fecha\": \"2025-01-18\",\r\n    \"tipo_tramite\": \"Licencia de Conducir\",\r\n    \"tipo_licencia\": \"B\",\r\n    \"nombre_completo\": \"Pedro José Hernández Ruiz\",\r\n    \"genero\": \"M\",\r\n    \"municipio_id_municipio\": 5,\r\n    \"ubicacion_escuela_id\": 2,\r\n    \"ubicacion_centro_id\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/registros",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"registros"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "EXAMEN",
+					"item": [
+						{
+							"name": "Create Examen 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_examen\": 1,\r\n    \"registro_id_registro\": 1,\r\n    \"correlativo_id_correlativo\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/examenes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"examenes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Examen 2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_examen\": 2,\r\n    \"registro_id_registro\": 2,\r\n    \"correlativo_id_correlativo\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/examenes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"examenes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Examen 3",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_examen\": 3,\r\n    \"registro_id_registro\": 3,\r\n    \"correlativo_id_correlativo\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/examenes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"examenes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Examen 4",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_examen\": 4,\r\n    \"registro_id_registro\": 4,\r\n    \"correlativo_id_correlativo\": 4\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/examenes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"examenes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Examen 5",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_examen\": 5,\r\n    \"registro_id_registro\": 5,\r\n    \"correlativo_id_correlativo\": 5\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/examenes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"examenes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "4. Respuestas de Exámenes",
+			"item": [
+				{
+					"name": "RES_USU (Teóricas)",
+					"item": [
+						{
+							"name": "Create ResUsu 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_usu\": 1,\r\n    \"res\": \"3 segundos de distancia\",\r\n    \"preg_id_preg\": 1,\r\n    \"examen_id_examen\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-usuario",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create ResUsu 2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_usu\": 2,\r\n    \"res\": \"Detenerse completamente\",\r\n    \"preg_id_preg\": 2,\r\n    \"examen_id_examen\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-usuario",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create ResUsu 3",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_usu\": 3,\r\n    \"res\": \"20 km/h\",\r\n    \"preg_id_preg\": 3,\r\n    \"examen_id_examen\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-usuario",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create ResUsu 4",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_usu\": 4,\r\n    \"res\": \"Orillarse y detenerse\",\r\n    \"preg_id_preg\": 4,\r\n    \"examen_id_examen\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-usuario",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create ResUsu 5",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_usu\": 5,\r\n    \"res\": \"3 segundos de distancia\",\r\n    \"preg_id_preg\": 1,\r\n    \"examen_id_examen\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-usuario",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create ResUsu 6 (Incorrecta)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_usu\": 6,\r\n    \"res\": \"Reducir velocidad\",\r\n    \"preg_id_preg\": 2,\r\n    \"examen_id_examen\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-usuario",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-usuario"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RES_PRACT_USU (Prácticas)",
+					"item": [
+						{
+							"name": "Create ResPract 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_pract\": 1,\r\n    \"nota\": 18,\r\n    \"preg_pract_id_preg_pract\": 1,\r\n    \"examen_id_examen\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-practicas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-practicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create ResPract 2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_pract\": 2,\r\n    \"nota\": 13,\r\n    \"preg_pract_id_preg_pract\": 2,\r\n    \"examen_id_examen\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-practicas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-practicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create ResPract 3",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_pract\": 3,\r\n    \"nota\": 22,\r\n    \"preg_pract_id_preg_pract\": 3,\r\n    \"examen_id_examen\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-practicas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-practicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create ResPract 4",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_pract\": 4,\r\n    \"nota\": 28,\r\n    \"preg_pract_id_preg_pract\": 4,\r\n    \"examen_id_examen\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-practicas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-practicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create ResPract 5",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_res_pract\": 5,\r\n    \"nota\": 15,\r\n    \"preg_pract_id_preg_pract\": 1,\r\n    \"examen_id_examen\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/respuestas-practicas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"respuestas-practicas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
