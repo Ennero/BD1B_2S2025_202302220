@@ -1,4 +1,3 @@
-version: "3.8"
 
 services:
   db:
@@ -23,7 +22,7 @@ services:
     # Construye la imagen del API usando el Dockerfile en la carpeta ./api
     build:
       context: ./api
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
       # Especificamos que use la fase 'dev' del Dockerfile
       target: dev
     ports:
